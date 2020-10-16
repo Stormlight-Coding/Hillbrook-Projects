@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+
+      .video-content{
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      .container-img {
+        position: relative;
+        display: inline-block;
+        width:  29.7%;
+        height: 600px;
+        margin-left: 15px;
+        object-fit: contain;
+        overflow: hidden;
+        vertical-align: top;
+        text-align: center;
+      }
+
+      .image-fitted {
+        transition: 1.5s;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        transform: scale(1.5);
+      }
+
+      .image-fitted-not-centered {
+        transition: 1.5s;
+        width: 500px;
+        height: 100%;
+        margin-left: -100px;
+        /* object-fit: cover; */
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        transform: scale(1.5);
+      }
+
+      .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: black;
+        overflow: hidden;
+        opacity: 0.5;
+        width: 100%;
+        height: 0;
+        margin-bottom: -75px;
+        transition: .5s ease;
+      }
+
+      .overlay-2 {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 0;
+        transition: .5s ease;
+      }
+
+      .container-img:hover img {
+        -webkit-transform: scale(1.25);
+        -moz-transform:scale(1.25);
+        -ms-transform:scale(1.25);
+        -o-transform:scale(1.25);
+        transform:scale(1.25);
+      }
+
+      .container-img:hover .overlay {
+        height: 1000px;
+      }
+
+      .container-img:hover .overlay-2 {
+        height: 100%;
+      }
+
+      .text-overlay {
+        display: none;
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        width: 90%;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      .container-img:hover .text-overlay{
+        display:inline-block;
+      }
+
+      .container-img:hover .left-text {
+        display: none;
+      }
+
+      .container-img .left-text {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2.4em;
+        line-height: 1;
+        font-weight: 900;
+        color: white;
+        font-family: 'Crimson Text', serif;
+        letter-spacing: 2px;
+      }
+
+      .container-img:hover .centered-text {
+        display: none;
+      }
+
+      .container-img .centered-text {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2.9em;
+        font-weight: 900;
+        color: white;
+        font-family: "Times New Roman", Times, serif;
+        letter-spacing: 2px;
+      }
+
+      .container-img:hover .right-text {
+        display: none;
+      }
+
+      .container-img .right-text {
+        position: absolute;
+        top: 25%;
+        left: 52%;
+        transform: translate(-50%, -50%);
+        font-size: 3.2em;
+        font-weight: 900;
+        color: white;
+        font-family: 'Crimson Text', serif;
+        letter-spacing: 2px;
+      }
+
+      .container-img .info-text {
+        text-align: center;
+        font-size: 2em;
+        color: white;
+        font-family: 'Crimson Text', serif;
+        letter-spacing: 2px;
+      }
+
+      .container-img:hover .info-text {
+        color: white;
+        font-size: 20px;
+        display: block;
+      }
+
+      .text-overlay button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: normal;
+        background-color: #6f96ba;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+            touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+        border: 1px solid;
+        border-radius: 4px;
+      }
+
+      #video-button-content-left {
+        opacity: 0;
+        margin-top: -50px;
+      }
+
+      #video-button-content-center {
+        opacity: 0;
+        margin-top: -50px;
+        width: 100%;
+      }
+
+
+
+      .video-wrapper {
+        z-index: 1;
+      }
+
+      .pop-up-text{
+        font-family: 'Crimson Text', serif;
+        width: 100%;
+        margin-bottom: 15px;
+      }
+
+      @media only screen and (max-width: 1200px) {
+        .container-img .left-text {
+          font-size: 2em;
+        }
+        .container-img .centered-text {
+          font-size: 2.2em;
+        }
+        .container-img .right-text {
+          font-size: 2.2em
+        }
+      }
+
+      @media only screen and (max-width: 1030px) {
+        .container-img {
+          position: relative;
+          display: inline-block;
+          width:  80%;
+          height: 600px;
+          margin-left: 15px;
+          object-fit: contain;
+          overflow: hidden;
+          vertical-align: top;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+
+        .image-fitted-not-centered {
+          width: 100%;
+          height: 100%;
+        }
+
+        .container-img .left-text {
+          font-size: 3.2em;
+        }
+        .container-img .centered-text {
+          font-size: 3.5em;
+        }
+        .container-img .right-text {
+          font-size: 3.5em
+        }
+
+      }
+      @media only screen and (max-width: 800px) {
+
+        .container-img {
+          width: 98%;
+          margin-left: -2px;
+        }
+      }
+
+      @media only screen and (max-width: 600px) {
+
+        .style-59244 {
+          margin-bottom:  -136px;
+        }
+      }
+
+
+      @media only screen and (max-width: 415px) {
+
+        .container-img {
+          width: 95%;
+          margin-left: -6px;
+        }
+        .container-img .left-text {
+          font-size: 1.5em;
+        }
+        .container-img .centered-text {
+          font-size: 1.7em;
+        }
+        .container-img .right-text {
+          font-size: 2em
+        }
+        .style-59244 {
+          margin-bottom:  -102px;
+        }
+      }
+
+      @media only screen and (max-width: 320px) {
+        .container-img {
+          width: 107%;
+          margin-left: -9px
+        }
+        .style-59244 {
+          margin-bottom:  -102px;
+        }
+      }
+
+
+    </style>
+  </head>
+  <link href="https://fonts.googleapis.com/css2?family=Bevan&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
+  <body>
+    <div class="video-content">
+
+      <div class="container-img">
+        <img src="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/194/misc/misc_233071.jpg" alt="Avatar" class="image-fitted" style="opacity: 1;">
+        <div class="left-text" style="font-family: 'Belven', serif;">INTER<br>CONNECTION</div>
+        <div class="overlay"></div>
+        <div class="overlay-2">
+          <div class="text-overlay">
+            <div class="pop-up-text">We believe that a sense of identity and of community belonging are central to each student’s developmental and academic needs. <br><br> With our responsive approach, we strive to create an inclusive environment in which each student feels a full sense of membership and is seen and valued.</div>
+            <button type="button" name="button" onclick="playVid()">WATCH THIS!</button>
+            <div id="video-button-content-left">
+              <div class="video-wrapper">
+                <script src="https://fast.wistia.com/embed/medias/1l1y41x0d2.jsonp" async></script>
+                <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+                <span class="wistia_embed wistia_async_1l1y41x0d2 popover=true popoverAnimateThumbnail=true videoFoam=true" style="display:inline-block;height:100%;position:relative;width:100%">&nbsp;</span>
+              </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="container-img">
+        <img src="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/194/text/large_text647848_103908.png" alt="Avatar" class="image-fitted" style="opacity: 1;">
+            <div class="centered-text" style="font-family: 'Belven', serif;">INTENTION</div>
+        <div class="overlay"></div>
+        <div class="overlay-2">
+          <div class="text-overlay">
+            <div class="pop-up-text">We believe that the best learning happens through <em>doing</em>. The real world is a cross-disciplinary place–and so are our classrooms. <br><br>Our curriculum is designed to provide authentic activities and explorations which overlap and connect in unexpected ways. </div>
+            <button type="button" name="button" onclick="playVid()">WATCH THIS!</button>
+            <div id="video-button-content-center">
+              <div class="video-wrapper">
+                <div class="center-video" style="height: 50px">
+                  <script src="https://fast.wistia.com/embed/medias/xb0otikjcq.jsonp" async></script>
+                  <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+                  <span class="wistia_embed wistia_async_xb0otikjcq popover=true popoverAnimateThumbnail=true videoFoam=true" style="display:inline-block;height:100%;position:relative;width:100%">&nbsp;</span>
+                </div>
+              </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="container-img">
+        <img src="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/194/misc/misc_232779.jpg" alt="Avatar" class="image-fitted" style="opacity: 1;">
+            <div class="right-text" style="font-family: 'Belven', serif;">IMPACT</div>
+        <div class="overlay"></div>
+        <div class="overlay-2">
+          <div class="text-overlay">
+            <div class="pop-up-text">We believe in igniting the changemaker in every student and nurturing the skills and mindsets to turn ideas into impact.<br><br> Our curriculum encourages students to know, respect, and value themselves and others as they seek to understand and appreciate differences, to develop empathy, and to challenge racism, biases, and discrimination.</div>
+            <button type="button" name="button" onclick="playVid()">WATCH THIS!</button>
+            <div id="video-button-content-center">
+              <div class="video-wrapper">
+                <div class="center-video" style="height: 50px">
+                  <script src="https://fast.wistia.com/embed/medias/mlg57ofj75.jsonp" async></script>
+                  <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+                  <span class="wistia_embed wistia_async_mlg57ofj75 popover=true popoverAnimateThumbnail=true videoFoam=true" style="display:inline-block;height:100%;position:relative;width:100%">&nbsp;</span>
+                </div>
+              </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

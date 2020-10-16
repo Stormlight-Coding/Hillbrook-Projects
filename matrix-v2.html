@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>test #2</title>
+    <style>
+
+    body{
+      background-color: white;
+    }
+
+
+
+    .accordion {
+      background-color: rgb(11,44,88);
+      /* background-image: linear-gradient(to left, white, rgb(11,44,88)); */
+      color: white;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 1.5em;
+      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+      letter-spacing: 2px;
+      font-weight: 200;
+      transition: 0.4s;
+      margin-top: 5px;
+    }
+
+    .active, .accordion:hover {
+      background-color: rgb(199, 208, 218);
+      /* background-image: linear-gradient(to right, white, rgb(11,44,88)); */
+      color: rgb(45,55,139);
+    }
+
+    .accordion:after {
+      content: '\002B';
+      color: #777;
+      font-weight: bold;
+      /* float: left; */
+      margin-left: 5px;
+    }
+
+    .active:after {
+      content: "\2212";
+    }
+
+
+    .panel {
+      padding: 0 18px;
+      background-color: white;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+    }
+
+    .statement {
+      text-align: left;
+      font-size: 22px;
+      letter-spacing: 2px;
+    }
+
+    .centered-table {
+      text-align: center;
+    }
+
+    .lower-header{
+      padding-bottom: 20px;
+      color: #444;
+
+    }
+    .upper-header{
+      padding-bottom: 20px;
+      color: #444;
+    }
+
+    .grade {
+      border: 1px solid #eee;
+      border-radius: 25%;
+      padding-left: 1.2em;
+      padding-right: 1.2em;
+      padding-top: 1em;
+      padding-bottom: 1em;
+      font-size: 1.2em;
+      text-align: left;
+    }
+
+    .grade:hover {
+      cursor: pointer;
+      background-color: rgb(199, 208, 218);
+    }
+
+    th {
+      font-size: 1.2em;
+    }
+
+    span {
+      margin-right: 7.7px;
+    }
+
+    table {
+      /* border-right: 1px solid rgba(225, 227, 237); */
+      height: 120px;
+      text-align: center;
+      float: left;
+      /* width: 100%; */
+    }
+
+    .table-view {
+      display: inline-block;
+    }
+
+    .table-view-lang {
+      display: inline-block;
+      margin-left: 95px;
+    }
+
+    .table-view-lang .upper{
+      margin-left: 86px;
+    }
+
+    .upper {
+      margin-left: 91px;
+    }
+
+
+    .visible {
+      visibility: visible;
+      opacity: 1;
+      font-size: 1em;
+      color:  black;
+      transition: opacity 2s linear;
+      height: auto;
+    }
+
+
+    .hidden {
+      display: none;
+      opacity: 0;
+      transition: visibility 0s 2s, opacity 2s linear;
+    }
+
+    .info {
+      width: 100%;
+      text-align: left;
+      font-size: 19px;
+      line-height: 2;
+      font-family: 'Trebuchet MS', sans-serif;
+      display: inline-block;
+    }
+
+    .info {
+      padding-bottom: 15px;
+    }
+
+    .info p{
+      margin-bottom: 0px;
+    }
+
+    .info li{
+      padding-bottom: 25px;
+    }
+
+    #more-info {
+      font-style: oblique;
+      opacity: 0.4;
+      margin-top: -18px;
+      margin-left: 5px;
+      text-align: left;
+    }
+
+    a {
+      text-decoration: none;
+      font-family: 'Trebuchet MS', sans-serif;
+      font-size: 18px;
+      color: black;
+    }
+
+    a:visited {
+      color: black;
+    }
+
+    #pdf-button {
+      height: 50px;
+      width: 125px;
+      border: none;
+      background-color: rgb(199, 208, 218);
+    }
+
+    @media only screen and (max-width: 1199px) {
+      .lower {
+        border: none;
+      }
+      .upper {
+        margin-top: 150px;
+        margin-left: 42px;
+        margin-bottom: 60px;
+      }
+
+      .grade {
+        display: inline-table;
+        margin-top: 10px;
+      }
+
+      .info {
+        padding-top: 45px;
+      }
+
+      .table-view-lang {
+        margin-left: 50px;
+      }
+
+      .table-view-lang .upper {
+        margin-top: 1px;
+      }
+      /* table {
+        border-bottom: 1px solid rgba(225, 227, 237);
+        border-right: none;
+      } */
+    }
+
+    @media only screen and (max-width: 670px) {
+      table {
+        height: 250px;
+        text-align: left;
+      }
+      .grade {
+        width: 3em;
+        display: inline-block;
+        text-align: center;
+      }
+      .lower td{
+        padding-left: 1em;
+        padding-bottom: 10px;
+      }
+      .lower {
+        border: none;
+      }
+      .upper td{
+        padding-left: 1em;
+      }
+
+      .upper {
+        margin-left: 96px;
+        margin-top: 60px;
+        margin-bottom: -5px;
+      }
+
+      .table-view-lang .upper {
+        margin-top: 1px;
+      }
+
+      span {
+        margin-bottom: 0.5em;
+      }
+    }
+
+    @media only screen and (max-width: 415px) {
+      .lower {
+        border: none;
+      }
+      .accordion {
+        /* background-color: red; */
+      }
+      .upper {
+        margin-top: 6em;
+        margin-bottom: -5px;
+      }
+      .grade {
+        width: 2em;
+        display: inline-block;
+        text-align: center;
+        font-size: 1em;
+      }
+      .lower td{
+        padding-left: 1em;
+        padding-bottom: 10px;
+      }
+
+      .info li {
+        font-size: 15px;
+      }
+    }
+
+      @media only screen and (max-width: 376px) {
+        .lower {
+          border: none;
+        }
+        .accordion {
+          /* background-color: red; */
+        }
+        .upper {
+          margin-top: 2em;
+          margin-bottom: -5px;
+        }
+        .grade {
+          width: 2em;
+          display: inline-block;
+          text-align: center;
+          font-size: 1em;
+        }
+        .lower td{
+          padding-left: 1em;
+          padding-bottom: 10px;
+        }
+
+        .info li {
+          font-size: 15px;
+        }
+      }
+
+    @media only screen and (max-width: 330px) {
+      .lower {
+        border: none;
+      }
+      .accordion {
+        /* background-color: red; */
+      }
+      .upper {
+        margin-top: 2em;
+        margin-bottom: -45px;
+      }
+      .grade {
+        width: 2em;
+        display: inline-block;
+        text-align: center;
+        font-size: 1em;
+      }
+      .lower td{
+        padding-left: 1em;
+        padding-bottom: 10px;
+      }
+
+      .info li {
+        font-size: 15px;
+      }
+    }
+
+
+      </style>
+      </head>
+      <body>
+      <button class="accordion">Literacy/English</button>
+      <div class="panel">
+        <!-- <p class="statement" style="color: #00356f;">"Philsophy Statement"</p> -->
+        <p style="font-style:oblique; opacity: 0.4; margin-top: 0px;">choose a grade level for more info</p>
+        <div class="centered-table">
+          <table class="table-view lower">
+            <tr>
+              <th class="lower-header" colspan="6">Lower</th>
+            </tr>
+            <tr>
+              <td>
+                <span class="grade" id="english-jk" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">JK</span>
+                <span class="grade" id="english-k" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">K</span>
+                <span class="grade" id="english-1" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">1</span>
+                <span class="grade" id="english-2" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">2</span>
+                <span class="grade" id="english-3" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">3</span>
+                <span class="grade" id="english-4" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">4</span>
+              </td>
+            </tr>
+          </table>
+          <table class="table-view upper" style="border:none">
+            <th class="upper-header" colspan="4">Middle</th>
+            <tr>
+              <td>
+                  <span class="grade" id="english-5" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">5</span>
+                  <span class="grade" id="english-6" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">6</span>
+                  <span class="grade" id="english-7" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">7</span>
+                  <span class="grade" id="english-8" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">8</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="info">
+          <p class="english-jk-info" style="display:none;"><strong>Reading:</strong></p>
+          <p class="english-jk-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-jk-info"  style="display:none; line-height: 1;">Notice sounds, rhythms, rhymes, syllables, initial sounds, other similarities/differences.</li>
+              <li class="english-jk-info"  style="display:none; line-height: 1;">Identify most letters and sounds.</li>
+              <li class="english-jk-info"  style="display:none; line-height: 1;">Understand that words are written and spoken combinations of sounds that can be read.</li>
+              <li class="english-jk-info"  style="display:none; line-height: 1;">Build a developing knowledge of concepts of print.</li>
+              <li class="english-jk-info"  style="display:none; line-height: 1;">Engage with books and understand a sense of story from the pictures.</li>
+            </ul>
+          <p class="english-jk-info" style="display:none;"><strong>Writing:</strong></p>
+          <p class="english-jk-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-jk-info"  style="display:none; line-height: 1;">Write all letters in their name.</li>
+              <li class="english-jk-info"  style="display:none; line-height: 1;">Independently use environmental print for help with letters when needed.</li>
+              <li class="english-jk-info"  style="display:none; line-height: 1;">Use the alphabet chart for identifying letters and associated sounds.</li>
+              <li class="english-jk-info"  style="display:none; line-height: 1;">Use pictures and estimated spelling to express ideas.</li>
+            </ul>
+          <p class="english-jk-info" style="display:none;"><strong>Listening & Speaking:</strong></p>
+          <p class="english-jk-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-jk-info"  style="display:none; line-height: 1;">Resolve conflicts with classmates using appropriate language and listening skills.</li>
+              <li class="english-jk-info"  style="display:none; line-height: 1;">Attend to and participate age-appropriately in group activities for 15 minutes.</li>
+              <li class="english-jk-info"  style="display:none; line-height: 1;">Take initiative to ask for help when needed.</li>
+              <li class="english-jk-info"  style="display:none; line-height: 1;">Practice verbal self-regulation.</li>
+              <li class="english-jk-info"  style="display:none; line-height: 1;">Retell familiar stories.</li>
+            </ul>
+          <p class="english-jk-info" style="display:none;"><strong>Mechanics:</strong></p>
+          <p class="english-jk-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-jk-info"  style="display:none; line-height: 1;">Hold the pencil "in the parking spot" grip.</li>
+              <li class="english-jk-info"  style="display:none; line-height: 1;">Recognize top to bottom, left to right writing conventions.</li>
+              <li class="english-jk-info"  style="display:none; line-height: 1;">Use the "helper" hand to hold their paper.</li>
+              <li class="english-jk-info"  style="display:none; line-height: 1;">Draw or write a firm and solid line.</li>
+            </ul>
+          <p class="english-k-info" style="display:none;"><strong>Print Concepts:</strong></p>
+          <p class="english-k-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Follow words from left to right, top to bottom, and page by page.</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Recognize and name all upper and lowercase letters.</li>
+            </ul>
+          <p class="english-k-info" style="display:none;"><strong>Phonological Awareness:</strong></p>
+          <p class="english-k-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Recognize and produce rhyming words.</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Recognize and say the common sounds of most letters.</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Isolate initial consonants in single-syllable words.</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">When a single syllable word is pronounced, identify the onset and rime and begin to fully separate the sounds.</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Blend two or three phonemes into recognizable words (cvc words).</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Isolate and pronounce the initial, medial vowel, and final sounds in cvc words.</li>
+            </ul>
+          <p class="english-k-info" style="display:none;"><strong>Phonics and Word Recognition:</strong></p>
+          <p class="english-k-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Read common high frequency words by sight.</li>
+            </ul>
+          <p class="english-k-info" style="display:none;"><strong>Fluency:</strong></p>
+          <p class="english-k-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Read emergent texts attending to each word in sequence and getting most of them correct.</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Read “emergently” ergo - “reread” a favorite story, re-creating the words of the text with fluent intonation and phrasing and showing through verbal statements or occasional pointing that the print on the page controls what is said.</li>
+            </ul>
+          <p class="english-k-info" style="display:none;"><strong>Comprehension:</strong></p>
+          <p class="english-k-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-k-info"  style="display:none; line-height: 1;">With prompting and support, retell familiar stories, including key details.</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">With prompting and support, identify characters, settings, and major events in a story</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">With prompting and support, ask and answer questions about key details in a text.</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Use knowledge from their own experience to make sense of and talk about the text.</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Make predictions based on illustrations or portions of stories.</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Name the author and illustrator of a story and define their roles.</li>
+            </ul>
+          <p class="english-k-info" style="display:none;"><strong>Craft and Structure:</strong></p>
+          <p class="english-k-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Recognize common types of texts (e.g., storybooks, poems, fantasy, realistic text).</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">With prompting and support, name the author and illustrator of a story and define the role of each in telling the story.</li>
+            </ul>
+          <p class="english-k-info" style="display:none;"><strong>Responding to Literature and Informational Text:</strong></p>
+          <p class="english-k-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Retell stories in their own words or re-enact them, getting the events in the correct sequence.</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Create artwork or written responses that show comprehension of the stories that were read.</li>
+            </ul>
+          <p class="english-k-info" style="display:none;"><strong>Vocabulary:</strong></p>
+          <p class="english-k-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Notice words that they don’t know when they are read to, and guess what the words  mean from how they are used.</li>
+            </ul>
+          <p class="english-k-info" style="display:none;"><strong>Habits and Processes:</strong></p>
+          <p class="english-k-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Use various means to communicate and make meaning: drawings, letter strings, scribbles, letter  approximations as well as gestures, intonations and role-played voices.</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Make an effort to reread their own writing and listen to that of others, showing attentiveness to meaning by, for example, asking for more information or laughing.</li>
+            </ul>
+          <p class="english-k-info" style="display:none;"><strong>Genres and Writing Purposes:</strong></p>
+          <p class="english-k-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Use a combination of drawing, dictating, and writing to compose opinion pieces in which they tell a reader the topic or the name of the book they are writing about and state anopinion or preference about the topic or book (e.g., My favorite book is…).</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Use a combination of drawing, dictating, and writing to compose informative/explanatory texts in which they name what they are writing about and supply some information about the topic.</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Use a combination of drawing, dictating, and writing to narrate a single event or several loosely linked events, tell about the events in the order in which they occurred, and provide a reaction to what happened.</li>
+            </ul>
+          <p class="english-k-info" style="display:none;"><strong>Language Use and Conventions Learning Outcomes:</strong></p>
+          <p class="english-k-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Demonstrate command of the conventions of standard English grammar and usage when writing or speaking.</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Print many upper- and lowercase letters.</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Use frequently occurring nouns and verbs.</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Form regular plural nouns orally by adding /s/ or /es/.</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Understand the use of question words (who, what, when, where, why).</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Use the most frequently occurring prepositions (e.g., to, from, in, out, on, off, for , of, by, within).</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Produce and expand complete sentences in shared language activities.</li>
+            </ul>
+          <p class="english-k-info" style="display:none;"><strong>Speaking and Listening Learning Outcomes:</strong></p>
+          <p class="english-k-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Participate in collaborative conversations with diverse partners about kindergarten topics and texts with peers and adults in small and large groups.</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Follow agreed-upon rules for discussion (eg. listening to others and taking turns speaking about topics and texts under discussion).</li>
+              <li class="english-k-info"  style="display:none; line-height: 1;">Continue a conversation through multiple exchanges.</li>
+            </ul>
+          <p class="english-1-info" style="display:none;"><strong>Phonological Awareness:</strong></p>
+          <p class="english-1-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Distinguish long from short vowel sounds in spoken single-syllable words.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Orally produce single-syllable words by blending sounds, including blends and digraphs.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Isolate and pronounce initial, medial vowel, and final sounds in spoken single-syllable words.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Segment spoken single-syllable words into their complete sequence of individual sounds.</li>
+            </ul>
+          <p class="english-1-info" style="display:none;"><strong>Phonics and Word Recognition:</strong></p>
+          <p class="english-1-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Decode regularly spelled one-syllable words.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Use knowledge that every syllable must have a vowel sound to determine the number of syllables in a printed word.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Decode two-syllable words following basic patterns by breaking the words into syllables.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Read words with inflectional endings.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Recognize first grade high frequency words as they encounter the words in reading.</li>
+            </ul>
+          <p class="english-1-info" style="display:none;"><strong>Fluency:</strong></p>
+          <p class="english-1-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Independently read on-level text that have been previewed for them, using intonation, pauses and emphasis that signal the structure of the sentence and the meaning of the text.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Use cues of punctuation, including commas, periods, question marks, and quotation marks to guide them in getting meaning and fluently reading aloud.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Use context to confirm or self-correct word recognition and understanding, rereading as necessary.</li>
+            </ul>
+          <p class="english-1-info" style="display:none;"><strong>Comprehension:</strong></p>
+          <p class="english-1-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Retell familiar stories, including key details and demonstrate understanding of the central message or lesson.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Identify characters, settings, and major events in a story using key details.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Talk about motives of characters.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Describe the cause and effects of specific events.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Make predictions about what might happen next and say why.</li>
+            </ul>
+          <p class="english-1-info" style="display:none;"><strong>Craft and Structure in Literature:</strong></p>
+          <p class="english-1-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Compare two books by the same author.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Identify who is telling the story at various points in a text.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Identify the main topic and retell key details of a text.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Know and use various text features (e.g., headings, tables of contents, glossaries, etc) to locate key facts or information in a text.</li>
+            </ul>
+          <p class="english-1-info" style="display:none;"><strong>Responding to Literature and Informational Text:</strong></p>
+          <p class="english-1-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Refer explicitly to parts of the text when presenting or defending a claim.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Retell the story in their own words or re-enact it, getting the events in the correct sequence.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Create artwork or written response that shows comprehension of the story that was read.</li>
+            </ul>
+          <p class="english-1-info" style="display:none;"><strong>Vocabulary:</strong></p>
+          <p class="english-1-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Notice words that they don’t know when they are read to and encountered in independent reading and guess what the words mean from how they are used.</li>
+            </ul>
+          <p class="english-1-info" style="display:none;"><strong>Habits and Processes:</strong></p>
+          <p class="english-1-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Generate topics and content for writing.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Work for more than a single day on creating pieces of writing.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Take selected pieces of their work through the processes of planning, drafting, getting response, revising, and editing.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Apply a sense of what constitutes good writing (that is, apply some commonly agreed-upon criteria to their own work).</li>
+            </ul>
+          <p class="english-1-info" style="display:none;"><strong>Genres and Writing Purposes:</strong></p>
+          <p class="english-1-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Write opinion pieces in which they introduce the topic or name the book they are writing about, state an opinion, supply a reason for the opinion, and provide some sense of closure.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Write informative/explanatory texts in which they name a topic, supply some facts about the topic, and provide some sense of closure..</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Write narratives in which they recount two or more appropriately sequenced events, include some details regarding what happened, use temporal words to signal event order, and provide some sense of closure.</li>
+            </ul>
+          <p class="english-1-info" style="display:none;"><strong>Language Use and Conventions Learning Outcomes:</strong></p>
+          <p class="english-1-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Produce writing that contains a large portion of correctly spelled, high-frequency words.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Write text that usually can be read by the child and others (perceived sounds in unfamiliar words are phonetically represented).</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Draw on a range of resources for deciding how to spell unfamiliar words, including strategies
+                like segmenting, sounding out, and matching to familiar words and word parts.</li>
+            </ul>
+          <p class="english-1-info" style="display:none;"><strong>Punctuation and Capitalization:</strong></p>
+          <p class="english-1-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Demonstrate interest and awareness by approximating the use of some punctuation, including exclamation points, question marks, periods, question marks, ellipses, and colons.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Capitalize proper names and sentence beginnings.</li>
+            </ul>
+          <p class="english-1-info" style="display:none;"><strong>Grammar:</strong></p>
+          <p class="english-1-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Use common, proper, and possessive nouns.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Use singular and plural nouns with matching verbs in basic sentences.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Use pronouns.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Use verbs to convey a sense of past, present, and future.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Use frequently occurring adjectives.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Use frequently occurring conjunctions (e.g., and, but, or, so because).</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Use frequently occurring prepositions.</li>
+            </ul>
+          <p class="english-1-info" style="display:none;"><strong>Speaking and Listening Learning Outcomes:</strong></p>
+          <p class="english-1-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Participate in collaborative conversations with diverse partners about first grade topics and texts with peers and adults in small and large groups.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Follow agreed-upon rules for discussion (eg. listening to others and taking turns speaking about topics and texts under discussion).</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Build on other’s talk in conversations by responding to the comments of others through multiple exchanges.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Ask questions to clear up any confusion about the topics and texts under discussion.</li>
+            </ul>
+          <p class="english-2-info" style="display:none;"><strong>Phonics and Word Recognition:</strong></p>
+          <p class="english-2-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Distinguish long and short vowels when reading regularly spelled one-syllable words.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Know spelling-sound correspondences for additional common vowel teams.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Decode regularly spelled two-syllable words with long vowels.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Decode words with common prefixes and suffixes.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Recognize second grade high frequency words as they encounter the words in reading.</li>
+            </ul>
+          <p class="english-2-info" style="display:none;"><strong>Fluency:</strong></p>
+          <p class="english-2-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Independently read on-level text that they have previewed on their own, using intonation, pauses and emphasis that signal the structure of the sentence and the meaning of the text.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Use cues of punctuation, including commas, periods, question marks, and quotation marks to guide them in getting meaning and fluently reading aloud.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Use context to confirm or self-correct word recognition and understanding, rereading as necessary.</li>
+            </ul>
+          <p class="english-2-info" style="display:none;"><strong>Comprehension:</strong></p>
+          <p class="english-2-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Retell stories and determine their central message, lesson, or moral.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Describe how characters in a story respond to major events or challenges.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Use information gained from the illustrations and words in print or digital text to demonstrate understanding of its characters, setting, or plot.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Infer cause and effect relationships that are not stated explicitly.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Compare two or more versions of the same story by different authors or from different cultures.</li>
+            </ul>
+          <p class="english-2-info" style="display:none;"><strong>Craft and Structure:</strong></p>
+          <p class="english-2-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Describe how words and phrases (e.g., regular beats, alliteration, rhymes, repeated lines) supply rhythm and meaning in a story or poem.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Describe the overall structure of a story, including describing how the beginning introduces the story and the ending concludes the action.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Acknowledge differences in points of view of characters, including speaking in a different voice for each character when reading dialogue aloud.</li>
+            </ul>
+          <p class="english-2-info" style="display:none;"><strong>Key Ideas and Details in Informational Texts:</strong></p>
+          <p class="english-2-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Identify the main idea and key supporting details in a paragraph and multi-paragraph text.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Describe the connection individuals, events, ideas or pieces of information in a
+              text.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Discuss how, why, and what-if questions about nonfiction texts.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Combine information from two different parts of the text.</li>
+            </ul>
+          <p class="english-2-info" style="display:none;"><strong>Craft and Structure in Informational Texts:</strong></p>
+          <p class="english-2-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Know and use various text features (e.g.,headings, tables of contents, glossaries, etc.) to locate key facts or information in a text.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Identify the main purpose of a text including what the author wants to answer, explain, or describe.</li>
+            </ul>
+          <p class="english-2-info" style="display:none;"><strong>Responding to Literature and Informational Text:</strong></p>
+          <p class="english-2-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Retell the story in their own words getting the events in the correct sequence.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Create written response that shows comprehension of the story or text that was read.</li>
+              <li class="english-1-info"  style="display:none; line-height: 1;">Refer explicitly to parts of the text when presenting or defending a claim both in literature and informational texts.</li>
+            </ul>
+          <p class="english-2-info" style="display:none;"><strong>Vocabulary:</strong></p>
+          <p class="english-2-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Recognize when they don’t know what a word means and use a variety of strategies for making sense of how it is used in the passage they are reading.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Talk about the meaning of some new words encountered in reading after they have finished reading and discussing a text.</li>
+            </ul>
+          <p class="english-2-info" style="display:none;"><strong>Habits and Processes:</strong></p>
+          <p class="english-2-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Generate topics and content for writing.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Work for more than a single day on creating pieces of writing.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Take selected pieces of their work through the processes of planning, drafting, getting response, revising, and editing.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Apply a sense of what constitutes good writing (that is, apply some commonly agreed-upon criteria to their own work).</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Take on strategies and elements of author’s craft that the class has discussed in their study of literary works.</li>
+            </ul>
+          <p class="english-2-info" style="display:none;"><strong>Genres and Writing Purposes:</strong></p>
+          <p class="english-2-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Write Opinion pieces in which they introduce the topic or book they are writing about, state an opinion, supply reasons that support the opinion, use linking words (e.g., because, and also) to connect opinion and reasons, and provide a concluding statement or section.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Write informative/explanatory texts in which they introduce a topic, use facts and
+              definitions to develop points, and provide concluding statement or section.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;"> Write narratives in which they recount a well-elaborated event or short sequence of events, include details to describe actions, thoughts, and feelings, use temporal words to signal event order, and provide a sense of closure. </li>
+            </ul>
+          <p class="english-2-info" style="display:none;"><strong>Spelling:</strong></p>
+          <p class="english-2-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Produce writing in which most high-frequency words are spelled correctly.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Correctly spell most words with regularly spelled patterns such as consonant-vowel-consonant, consonant-vowel-consonant-silent e and one-syllable words with blends.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Correctly spell most inflectional endings, including plurals and verb tenses.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Use correct spelling patterns and rule most of the time.</li>
+            </ul>
+          <p class="english-2-info" style="display:none;"><strong>Punctuation and Capitalization:</strong></p>
+          <p class="english-2-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Use capital letters at the beginning of sentences.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Use periods to end sentences.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Approximate the use of quotation marks.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Use capital letters and exclamation marks for emphasis.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Use question marks.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Use common contractions.</li>
+            </ul>
+          <p class="english-2-info" style="display:none;"><strong>Speaking and Listening Learning Outcomes:</strong></p>
+          <p class="english-2-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Participate in collaborative conversations with diverse partners about second grade topics and texts with peers and adults in small and large groups.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Follow agreed-upon rules for discussion (e.g., gaining the floor in respectful ways, listening to others with care, speaking one at a time about the topics and texts under discussion).</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Build on other’s talk in conversations by linking their comments to the remarks of others.</li>
+              <li class="english-2-info"  style="display:none; line-height: 1;">Ask for clarification and further explanation as needed about the topics and texts under discussion.</li>
+            </ul>
+          <p class="english-3-info" style="display:none;"><strong>Phonics and Word Recognition:</strong></p>
+          <p class="english-3-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-3-info"  style="display:none; line-height: 1;"> Know and apply grade-level phonics and word analysis skills in decoding words both in isolation and in text.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Identify and know the meaning of the most common prefixes and derivational suffixes.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Decode words with common Latin suffixes.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Decode multi-syllable words.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Read grade- appropriate irregularly spelled words.</li>
+            </ul>
+          <p class="english-3-info" style="display:none;"><strong>Fluency:</strong></p>
+          <p class="english-3-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Independently read on-level text that they have previewed on their own, using intonation, pauses and emphasis that signal the structure of the sentence and the meaning of the text.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Use cues of punctuation to guide them in getting meaning and fluently reading aloud.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Use pacing and intonation to convey the meaning of the clauses and phrases of the sentences they read aloud.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Use context to confirm or self-correct word recognition and understanding, rereading as necessary.</li>
+            </ul>
+          <p class="english-3-info" style="display:none;"><strong>Key Ideas and Details in Literature:</strong></p>
+          <p class="english-3-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Ask and answer questions to demonstrate understanding of a text, referring explicitly to the text as the basis for answers.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Recount stories; determine the central message, lesson, or moral and explain how it is conveyed through key details in the text.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Describe characters in a story (e.g., their traits, motivations, or feelings) and explain how their actions contribute to the sequence of events.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Compare and contrast the themes, settings, and plots of stories written by the same author about the same or similar characters (e.g., in books from a series).</li>
+            </ul>
+          <p class="english-3-info" style="display:none;"><strong>Craft and Structure in Literature:</strong></p>
+          <p class="english-3-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Refer to parts of stories, dramas, and poems when writing or speaking about a text.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Describe how each successive part builds on earlier sections.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Distinguish their own point of view from that of the narrator or those of the characters.</li>
+            </ul>
+          <p class="english-3-info" style="display:none;"><strong>Key Ideas and Details in Informational Texts:</strong></p>
+          <p class="english-3-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Ask and answer questions to demonstrate understanding of a text, referring explicitly to the text as the basis for the answers.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Identify the main idea and key supporting details in a paragraph and multi-paragraph text.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Summarize texts.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Describe the relationship between a series of events, ideas, or concepts in a text using language that pertains to time, sequence, and cause/effect.</li>
+            </ul>
+          <p class="english-3-info" style="display:none;"><strong>Craft and Structure in Informational Texts:</strong></p>
+          <p class="english-3-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Know and use various text features (e.g.,headings, tables of contents, glossaries, etc) to locate key facts or information in a text.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Identify the main purpose of a text including what the author wants to answer, explain, or describe.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Compare and contrast the most important points and key details presented on two texts on the same topic.</li>
+            </ul>
+          <p class="english-3-info" style="display:none;"><strong>Responding to Literature and Informational Text:</strong></p>
+          <p class="english-3-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Create written response that shows comprehension of the story or text that was read.</li>
+            </ul>
+          <p class="english-3-info" style="display:none;"><strong>Vocabulary:</strong></p>
+          <p class="english-3-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Infer the meaning of words from roots, prefixes and suffixes, as well as from the overall contextual meaning of what they are reading.</li>
+            </ul>
+          <p class="english-3-info" style="display:none;"><strong>Writing Learning Outcomes:</strong></p>
+          <p class="english-3-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Generate topics and content for writing</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Take selected pieces of their work through the processes of planning, drafting, getting response,
+                revising, and editing. </li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Apply a sense of what constitutes good writing (that is, apply some commonly agreed-upon criteria to their own work).</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Take on strategies and elements of author’s craft that the class has discussed in their study of literary works.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Write Opinion Pieces on topics or texts, supporting a point of view with reasons. </li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Introduce the topic or text they are writing about, state an opinion, and create an organizational structure that lists reasons.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Provide reasons that support the opinion.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Use linking words and phrases (e.g., because, therefore, since, for example) to connect opinion and reasons</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Provide a concluding statement or section.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Write informative/explanatory texts to examine a topic and convey ideas and information clearly.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Introduce a topic and group related information together; include illustrations when useful to aiding comprehension.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Develop the topic with facts, definitions, and details.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Use linking words and phrases (e.g., also, another, and more, but) to connect ideas within categories of information.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Provide a concluding statement or section.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Write narrative to develop real or imagined experiences or events using effective technique, descriptive details, and clear event sequence.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Establish a situation that introduces a narrator and/or characters; organize an event sequence that unfolds naturally.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Use dialogue and descriptions of actions, thoughts, and feelings to develop experiences and events or show the response of characters to situations.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Provide a sense of closure.</li>
+            </ul>
+          <p class="english-3-info" style="display:none;"><strong>Spelling:</strong></p>
+          <p class="english-3-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Notice when words do not look correct and use strategies to correct the spelling.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Correctly spell all familiar high-frequency words.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Correctly spell words with short vowels and common endings.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Correctly spell most inflectional endings, including plurals and verb tenses.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Use correct spelling patterns and rules such as consonant doubling, dropping e and changing y to i</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Correctly spell most derivational words (-tion, -ment, -ly)</li>
+            </ul>
+          <p class="english-3-info" style="display:none;"><strong>Punctuation, Capitalization, and Grammar:</strong></p>
+          <p class="english-3-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Use capital letters at the beginning of sentences.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Use periods and other end punctuation correctly nearly all the time.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Approximate the use of quotation marks and commas.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Use contractions.</li>
+            </ul>
+          <p class="english-3-info" style="display:none;"><strong>Speaking and Listening Learning Outcomes:</strong></p>
+          <p class="english-3-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Engage effectively in a range of collaborative discussions with diverse partners on third grade topics and texts, building on others’ ideas and expressing their own clearly.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Come to discussions prepared; explicitly draw on that preparation and other information known about the topic to explore ideas under discussion.</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Follow agreed upon rules for discussion (e.g., gaining the floor in respectful ways, listening to others with care, speaking one at a time about the topics and texts under discussion).</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Ask questions to check understanding of information presented, stay on topic, and link their
+             comments to the remarks of others.</li>
+             <li class="english-3-info"  style="display:none; line-height: 1;">Explain their own ideas and understanding in light of the discussion.</li>
+            </ul>
+          <p class="english-4-info" style="display:none;"><strong>Phonics and Word Recognition:</strong></p>
+          <p class="english-4-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Know and apply grade-level phonics and word analysis skills in decoding words.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Use combined knowledge of all letter-sound correspondences, syllabication patterns, and
+              morphology to read accurately unfamiliar multisyllabic words in context and out of
+              context.</li>
+            </ul>
+          <p class="english-4-info" style="display:none;"><strong>Fluency:</strong></p>
+          <p class="english-4-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Independently read on-level text that they have previewed on their own, using intonation, pauses and emphasis that signal the structure of the sentence and the meaning of the text.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Use cues of punctuation to guide them in getting meaning and fluently reading aloud.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Use pacing and intonation to convey the meaning of the clauses and phrases of the sentences they read aloud.</li>
+              <li class="english-4-info" style="display:none; line-height: 1;">Use context to confirm or self-correct word recognition and understanding, rereading as necessary.</li>
+            </ul>
+          <p class="english-4-info" style="display:none;"><strong>Key Ideas and Details in Literature:</strong></p>
+          <p class="english-4-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Refer to details and examples in a text when explaining what the text says explicitly and when drawing inferences from the text.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Determine a theme of a story or poem from details in the text; summarize the text.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Describe in depth a character, setting, or event in a story drawing on specific details of the text (e.g. a character’s thoughts, words, or actions).</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Compare and contrast treatment of similar themes and topics (e.g., opposition of good and evil) and patterns of events in stories.</li>
+            </ul>
+          <p class="english-4-info" style="display:none;"><strong>Craft and Structure in Literature:</strong></p>
+          <p class="english-4-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-3-info"  style="display:none; line-height: 1;">When writing or speaking about a text refer to the structural elements (e.g., verse, rhythm, meter, characters, settings, dialogue, etc).</li>
+              <li class="english-3-info"  style="display:none; line-height: 1;">Compare and contrast the point of view from which different stories are narrated, including the difference between first and third person narrations.</li>
+            </ul>
+          <p class="english-4-info" style="display:none;"><strong>Key Ideas and Details in Informational Texts:</strong></p>
+          <p class="english-4-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Refer to details and examples in a text when explaining what the text says explicitly and when drawing inferences from the text.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Determine the main idea of a text and explain how it is supported by key details; summarize the text.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Explain events, procedures, ideas, or concepts in a historical, scientific, or technical text, including what happened and why, based on specific information in the text. </li>
+            </ul>
+          <p class="english-4-info" style="display:none;"><strong>Craft and Structure in Informational Texts:</strong></p>
+          <p class="english-4-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Describe the overall structure (e.g., chronology, comparison, cause/effect, problem/solution) of events.</li>
+
+            </ul>
+          <p class="english-4-info" style="display:none;"><strong>Responding to Literature and Informational Text:</strong></p>
+          <p class="english-4-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Explain major differences between poems, drama, and prose, and refer to the structural elements of poems (e.g., verse, rhythm, meter) and drama (e.g., casts, of characters, settings, descriptions, dialogue, stage directions) when writing or speaking about a text.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Make connections between the text of a story or drama and a visual or oral presentation of the text, identifying where each version reflects specific descriptions and directions in the text. </li>
+            </ul>
+          <p class="english-4-info" style="display:none;"><strong>Vocabulary:</strong></p>
+          <p class="english-4-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Determine the meaning of words and phrases as they are used in a text.</li>
+            </ul>
+          <p class="english-4-info" style="display:none;"><strong>Writing Learning Outcomes:</strong></p>
+          <p class="english-4-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Generate topics and content for writing.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Take selected pieces of their work through the processes of planning, drafting, getting response,
+                revising, and editin</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Apply a sense of what constitutes good writing (that is, apply some commonly agreed-upon criteria to their own work).</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Take on strategies and elements of author’s craft that the class has discussed in their study of literary works.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Write opinion pieces on topics or texts, supporting a point of view with reasons and information.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Introduce a topic or text clearly, state an opinion, and create an organizational structure in which related ideas are grouped to support the writer’s purpose.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Provide reasons that are supported by facts and details.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Link Opinion and reasons using words and phrases (e.g., for instance, in order to, in addition).</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Provide a concluding statement or section related to the opinion presented.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Write informative/explanatory texts to examine a topic and convey ideas and information clearly.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Introduce a topic clearly and group related information in paragraphs and sections.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Develop the topic with facts, definitions, concrete details, quotations, or other information and examples related to the topic.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Link ideas within categories of information using words and phrases (e.g., another, for example, also, because).</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Write narratives to develop real or imagined experiences or events using effective technique, descriptive details, and clear event sequences.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;"> Orient the reader by establishing a situation and introducing a narrator and/or characters; organize an event sequence that unfolds naturally.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Use dialogue and description to develop experiences and events or show the responses of characters to situations.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Use a variety of transitional words and phrases to manage the sequence of events.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Use concrete words and phrases and sensory details to convey experiences and events precisely.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Provide a conclusion that follows from the narrated experiences or events.</li>
+            </ul>
+          <p class="english-4-info" style="display:none;"><strong>Speaking and Listening Learning Outcomes:</strong></p>
+          <p class="english-4-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Engage effectively in a range of collaborative discussions with diverse partners on fourth grade topics and texts, building on others’ ideas and expressing their own clearly.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Come to discussions prepared; explicitly draw on that preparation and other information known about the topic to explore ideas under discussion.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Follow agreed upon rules for discussion and carry out assigned roles.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Pose and respond to specific questions to clarify or follow up on information, and make comments that contribute to the discussion and link to the remarks of others.</li>
+              <li class="english-4-info"  style="display:none; line-height: 1;">Review the key ideas expressed and explain their own ideas and understandings in light of the discussion.</li>
+            </ul>
+          <p class="english-5-info" style="display:none;"><strong>Reading:</strong></p>
+          <p class="english-5-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Summarize the main events including the chronology and importance in reading passages.</li>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Distinguish characters from one another and identify them by their salient characteristics.</li>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Recognize the setting of a particular work, as well as begin to understand how setting impacts character and plot.</li>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Recognize an author's tone, as well as the mood of an excerpt or reading.</li>
+            </ul>
+          <p class="english-5-info" style="display:none;"><strong>Writing:</strong></p>
+          <p class="english-5-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Write clearly structured paragraphs that include a topic/thesis sentence, supporting points, evidence for supporting points, and a concluding sentence.</li>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Recognize and use transitions effectively within a paragraph.</li>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Use evidence to support each point or claim.</li>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Write in clear, complete sentences; recognize and revise run-ons and fragments.</li>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Write a variety of genres, including reports, letters, stories, journals, personal reflections.</li>
+            </ul>
+          <p class="english-5-info" style="display:none;"><strong>Listening & Speaking:</strong></p>
+          <p class="english-5-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Make consistent eye contact while listening and speaking with others.</li>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Read passages aloud with proper emphasis and inflection.</li>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Speak in a clear voice with an appropriate level of energy.</li>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Listen to peers and avoid repeating points that have already been said.</li>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Present information in a clearly measured voice.</li>
+            </ul>
+          <p class="english-5-info" style="display:none;"><strong>Mechanics:</strong></p>
+          <p class="english-5-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Write with consistent subject-verb agreement and tense.</li>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Begin to vary sentence structure and length.</li>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Avoid colloquial language and broad adjectives.</li>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Use precise language.</li>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Brainstorm and outline prior to beginning a writing assignment.</li>
+              <li class="english-5-info"  style="display:none; line-height: 1;">Edit writing for capitalization, overall sound, punctuation and spelling.</li>
+            </ul>
+          <p class="english-6-info" style="display:none;"><strong>Reading:</strong></p>
+          <p class="english-6-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Summarize and retain the main events in a night's reading.</li>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Recognize the main themes of a reading, as well as how these themes develop over time in a work.</li>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Determine what the most important concepts and events are in a reading, and explain why they are important.</li>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Determine how setting, mood, and tone impact a work.</li>
+            </ul>
+          <p class="english-6-info" style="display:none;"><strong>Writing:</strong></p>
+          <p class="english-6-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Achieve proficiency with the paragraph structure.</li>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Recognize and use transitions effectively.</li>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Write multi-paragraph assignments with each paragraph structured around a single main idea.</li>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Construct four-paragraph essays with introductions and conclusions.</li>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Recognize writing conventions from literature and begin incorporating them into their own writing.</li>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Use precise (specific, concrete, and/or sensory) language appropriate to the audience.</li>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Utilize the writing process (brainstorm, outline, draft, revise, publish).</li>
+            </ul>
+          <p class="english-6-info" style="display:none;"><strong>Listening & Speaking:</strong></p>
+          <p class="english-6-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Listen to what peers are saying.</li>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Speak in a clearly audible voice.</li>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Make consistent eye contact with audience.</li>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Present information in a clearly measured voice.</li>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Read passages aloud with proper inflection and emphasis.</li>
+            </ul>
+          <p class="english-6-info" style="display:none;"><strong>Mechanics:</strong></p>
+          <p class="english-6-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Incorporate quotations as evidence and cite properly.</li>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Recognize and understand the function of all eight parts of speech, as well as subject-verb agreement and pronoun-antecedent agreement.</li>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Recognize fragments and run-ons.</li>
+              <li class="english-6-info"  style="display:none; line-height: 1;">Vary word choice and use precise language.</li>
+            </ul>
+          <p class="english-7-info" style="display:none;"><strong>Reading:</strong></p>
+          <p class="english-7-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Summarize and retain main events in a reading.</li>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Distinguish between information that is important and that which is superfluous.</li>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Use literary evidence to support an argument or thesis.</li>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Notice how an author’s use of word choice and repetition creates meaning in a passage.</li>
+            </ul>
+          <p class="english-7-info" style="display:none;"><strong>Writing:</strong></p>
+          <p class="english-7-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Achieve mastery of the paragraph structure.</li>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Achieve proficiency with writing five paragraph essays.</li>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Develop proficiency with different styles of writing, including personal, analytical, and creative.</li>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Use literary evidence in support of one’s argument in ways that are increasingly more fluid; analyze the evidence provided in a way that elaborates on its significance, in light of one’s main argument.</li>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Use precise (concrete and specific) language.</li>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Vary word choice and sentence length to achieve fluidity in one's writing.</li>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Utilize pre-writing (brainstorming, outlining) strategies.</li>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Achieve proficiency when it comes to beginning a piece of writing with a hook/lead and ending with a final reflective summary.</li>
+            </ul>
+          <p class="english-7-info" style="display:none;"><strong>Listening & Speaking:</strong></p>
+          <p class="english-7-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Listen and participate meaningfully during classroom discussions, distinguishing between comments that add to a discussion and those which have already been covered.</li>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Address the group in a clear, energetic voice while making eye contact.</li>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Read passages aloud with proper inflection and emphasis.</li>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Speak in an even, measured tone while avoiding use of filler words such as “um” and “like”; use more formal language when addressing a group or giving a presentation.</li>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Ask questions of one’s peers, including engaging them during group work and keeping them on task.</li>
+            </ul>
+          <p class="english-7-info" style="display:none;"><strong>Mechanics:</strong></p>
+          <p class="english-7-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Consistently observe standard conventions for writing about literature, including writing in third person, using present tense, writing to an audience familiar with the text, and avoiding plot summary in favor of analysis.</li>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Avoid writing run-ons and fragments.</li>
+              <li class="english-7-info"  style="display:none; line-height: 1;">Achieve proficiency with use of possessives, subject-verb agreement, pronoun agreement, and semicolon and comma usage.</li>
+            </ul>
+          <p class="english-8-info" style="display:none;"><strong>Reading:</strong></p>
+          <p class="english-8-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Determine the most important events and themes in a reading.</li>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Make connections between different parts of a text, as well as between different texts.</li>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Analyze passages/quotations in support of making an argument.</li>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Craft discussion questions.</li>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Notice how an author’s use of word choice and repetition creates meaning in a passage.</li>
+            </ul>
+          <p class="english-8-info" style="display:none;"><strong>Writing:</strong></p>
+          <p class="english-8-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Write cohesive five paragraph essays.</li>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Achieve proficiency with different styles of writing, including analytical, personal and expository.</li>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Use precise language to accurately convey  meaning.</li>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Craft a thesis, topic or question to explore in writing.</li>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Use textual evidence fluidly and effectively in support of a thesis.</li>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Analyze and cite evidence effectively in proving a thesis.</li>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Vary word choice and sentence length to create a sense of fluidity and voice.</li>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Begin a piece of writing with an engaging hook/lead, and end a piece with a final thought that leaves the reader with a new insight or sense of discovery.</li>
+            </ul>
+          <p class="english-8-info" style="display:none;"><strong>Listening & Speaking:</strong></p>
+          <p class="english-8-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Build on and respond to the comments of one's peers.</li>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Present information in a clearly audible voice that conveys an appropriate level of energy and interest in subject matter.</li>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Read passages with appropriate inflection and tone.</li>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Guide aspects of a class discussion using  discussion questions or an activity.</li>
+            </ul>
+          <p class="english-8-info" style="display:none;"><strong>Mechanics:</strong></p>
+          <p class="english-8-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Achieve mastery of standard conventions for writing about literature, including writing in third person, using present tense, writing to an audience familiar with the text, and avoiding plot summary in favor of analysis.</li>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Correctly punctuate and cite quotations.</li>
+              <li class="english-8-info"  style="display:none; line-height: 1;">Write with consistency of tense, point of view, and subject-verb agreement.</li>
+            </ul>
+        </div>
+      </div>
+
+      <button class="accordion">Science</button>
+      <div class="panel">
+        <!-- <p class="statement" style="color: #00356f;">"Philsophy Statement"</p> -->
+        <p style="font-style:oblique; opacity: 0.4; margin-top: 0px;">choose a grade level for more info</p>
+        <div class="centered-table">
+          <table class="table-view lower">
+            <tr>
+              <th class="lower-header" colspan="6">Lower</th>
+            </tr>
+            <tr>
+              <td>
+                <span class="grade" id="science-jk" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">JK</span>
+                <span class="grade" id="science-k" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">K</span>
+                <span class="grade" id="science-1" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">1</span>
+                <span class="grade" id="science-2" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">2</span>
+                <span class="grade" id="science-3" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">3</span>
+                <span class="grade" id="science-4" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">4</span>
+              </td>
+            </tr>
+          </table>
+          <table class="table-view upper" style="border:none">
+            <th class="upper-header" colspan="4">Middle</th>
+            <tr>
+              <td>
+                <span class="grade" id="science-5" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">5</span>
+                <span class="grade" id="science-6" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">6</span>
+                <span class="grade" id="science-7" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">7</span>
+                <span class="grade" id="science-8" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">8</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="info">
+        <p class="science-jk-info" style="display:none;"><strong>In Science, students will be able to:</strong></p>
+          <ul>
+            <li class="science-jk-info"  style="display:none; line-height: 1;">Demonstrate respect for living organisms.</li>
+            <li class="science-jk-info"  style="display:none; line-height: 1;">Be aware of simple cycles that occur in nature.</li>
+            <li class="science-jk-info"  style="display:none; line-height: 1;">Make connections about where their food comes from.</li>
+            <li class="science-jk-info"  style="display:none; line-height: 1;">Explain their sensory observations with simple describing words.</li>
+            <li class="science-jk-info"  style="display:none; line-height: 1;">Identify their five senses and the part of the body to which they connect.</li>
+            <li class="science-jk-info"  style="display:none; line-height: 1;">Understand how some wild animals depend on their environment to keep warm and safe through the seasons.</li>
+            <li class="science-jk-info"  style="display:none; line-height: 1;">Describe the basic lifecycle of an insect (ladybug, ant).</li>
+          </ul>
+        <p class="science-k-info" style="display:none;"><strong>In Science, students will be able to:</strong></p>
+          <ul>
+            <li class="science-k-info"  style="display:none; line-height: 1;">Demonstrate respect for living organisms.</li>
+            <li class="science-k-info"  style="display:none; line-height: 1;">Compare and contrast living and nonliving things.</li>
+            <li class="science-k-info"  style="display:none; line-height: 1;">Understand how living things change over time (including decomposition).</li>
+            <li class="science-k-info"  style="display:none; line-height: 1;">Explain their sensory observations with simple describing words.</li>
+            <li class="science-k-info"  style="display:none; line-height: 1;">Identify their five senses and the part of the body to which they connect.</li>
+            <li class="science-k-info"  style="display:none; line-height: 1;">Make connections about where their food comes from.</li>
+            <li class="science-k-info"  style="display:none; line-height: 1;">Describe the basic lifecycle of an insect (butterfly, bee) and their importance as pollinators.</li>
+            <li class="science-k-info"  style="display:none; line-height: 1;">Demonstrate knowledge of the major plant parts and their basic role in plant growth and survival.</li>
+          </ul>
+        <p class="science-1-info" style="display:none;"><strong>In Science, students will be able to:</strong></p>
+          <ul>
+            <li class="science-1-info"  style="display:none; line-height: 1;">Understand the unique properties and states of water.</li>
+            <li class="science-1-info"  style="display:none; line-height: 1;">Explain and diagram the water cycle.</li>
+            <li class="science-1-info"  style="display:none; line-height: 1;">Conduct basic measurements of liquids and solids.</li>
+            <li class="science-1-info"  style="display:none; line-height: 1;">Follow multi-step experiment directions and create a simple graph.</li>
+            <li class="science-1-info"  style="display:none; line-height: 1;">Explain how a bird is different from other vertebrates.</li>
+            <li class="science-1-info"  style="display:none; line-height: 1;">Describe some of the adaptations plants and animals use to survive at the rocky seashore.</li>
+            <li class="science-1-info"  style="display:none; line-height: 1;">Explain magnetism and what makes something magnetic.</li>
+          </ul>
+        <p class="science-2-info" style="display:none;"><strong>In Science, students will be able to:</strong></p>
+          <ul>
+            <li class="science-2-info"  style="display:none; line-height: 1;">Understand key aspects of the geology of the earth.</li>
+            <li class="science-2-info"  style="display:none; line-height: 1;">Understand and describe our solar system.</li>
+            <li class="science-2-info"  style="display:none; line-height: 1;">Describe the main features of the sandy beach habitat including the plants and animals that live there.</li>
+            <li class="science-2-info"  style="display:none; line-height: 1;">Explain the distinguishing characteristics of various animal groups and how they relate to classification.</li>
+            <li class="science-2-info"  style="display:none; line-height: 1;">Understand the difference between metric and standard measurement and be able to use them to gather information.</li>
+          </ul>
+        <p class="science-3-info" style="display:none;"><strong>In Science, students will be able to:</strong></p>
+          <ul>
+            <li class="science-3-info"  style="display:none; line-height: 1;">Apply scientific ideas to design, test, and refine a device that converts energy from one form to another - such as: electric circuits that convert electrical energy into motion energy of a vehicle, light, or sound.</li>
+            <li class="science-3-info"  style="display:none; line-height: 1;">Conduct investigation to determine whether the mixing of two or more substances results in new substances.</li>
+            <li class="science-3-info"  style="display:none; line-height: 1;">Make observations to provide evidence that energy can be transferred from place to place by electric currents.</li>
+            <li class="science-3-info"  style="display:none; line-height: 1;">Develop and communicate information through a lab report.</li>
+            <li class="science-3-info"  style="display:none; line-height: 1;">Make observations to provide evidence that energy can be transferred from place to place by electric currents.</li>
+            <li class="science-3-info"  style="display:none; line-height: 1;">Analyze and interpret data from fossils to provide evidence of the organisms and the environments in which they lived long ago. </li>
+            <li class="science-3-info"  style="display:none; line-height: 1;">Use mathematics and computational thinking when gathering data.</li>
+            <li class="science-3-info"  style="display:none; line-height: 1;">Generate and compare multiple solutions that use patterns to transfer information through sound.</li>
+            <li class="science-3-info"  style="display:none; line-height: 1;">Define a simple design problem reflecting a need or a want that includes specified criteria for success and constraints on materials, time, or cost (such as building water filters for water pollution).</li>
+            <li class="science-3-info"  style="display:none; line-height: 1;">Generate and compare multiple possible solutions to a problem based on how well each is likely to meet the criteria and constraints of the problem (such as building an instrument with found objects).</li>
+            <li class="science-3-info"  style="display:none; line-height: 1;">Plan and carry out fair tests in which variables are controlled and failure points are considered to identify aspects of a model or prototype that can be improved.Develop a model of waves to describe patterns in terms of amplitude and wavelength and that waves can cause objects to move (such as through sound waves).</li>
+          </ul>
+        <p class="science-4-info" style="display:none;"><strong>In Science, students will be able to:</strong></p>
+          <ul>
+            <li class="science-4-info"  style="display:none; line-height: 1;">Develop a model to describe that light reflecting from objects and entering the eye allows objects to be seen.</li>
+            <li class="science-4-info"  style="display:none; line-height: 1;">Construct an argument with evidence that in a particular habitat (such as oak woodland) some organisms can survive well, some survive less well, and some cannot survive at all.</li>
+            <li class="science-4-info"  style="display:none; line-height: 1;">Define a simple design problem reflecting a need or a want that includes specified criteria for success and constraints on materials, time, or cost. (such as building solar ovens, or creating a lighting system with limited resources).</li>
+            <li class="science-4-info"  style="display:none; line-height: 1;">Generate and compare multiple possible solutions to a problem based on how well each is likely to meet the criteria and constraints of the problem (such as bubbleology and creating bubble makers).</li>
+            <li class="science-4-info"  style="display:none; line-height: 1;">Plan and carry out fair tests in which variables are controlled and failure points are considered to identify aspects of a model or prototype that can be improved (such as chromatography testing, magnifying glass testing).</li>
+            <li class="science-4-info"  style="display:none; line-height: 1;">Apply scientific ideas to design, test, and refine a device that converts energy from one form to another (such as building a solar oven).</li>
+            <li class="science-4-info"  style="display:none; line-height: 1;">Construct an argument that plants and animals have internal and external structures that function to support survival, growth, behavior, and reproduction. (such as the study of plant parts and specifically photosynthesis).</li>
+            <li class="science-4-info"  style="display:none; line-height: 1;">Obtain and combine information to describe that energy and fuels are derived from natural resources and their uses affect the environment. (Such as the renewable energy resource of sunlight; non-renewable energy resources are fossil fuels and fissile materials. Examples of environmental effects could include loss of habitat cutting of forests).</li>
+          </ul>
+        <p class="science-5-info" style="display:none;"><strong>In Science, students will be able to:</strong></p>
+          <ul>
+            <li class="science-5-info"  style="display:none; line-height: 1;">Understand the organization and structure of living organisms.</li>
+            <li class="science-5-info"  style="display:none; line-height: 1;">Define matter according to its physical and chemical properties.</li>
+            <li class="science-5-info"  style="display:none; line-height: 1;">Understand physical forces through building model rockets and bridges.</li>
+            <li class="science-5-info"  style="display:none; line-height: 1;">Make conclusions based on inferences, observations, evaluation and analysis of data.</li>
+          </ul>
+        <p class="science-6-info" style="display:none;"><strong>In Science, students will be able to:</strong></p>
+          <ul>
+            <li class="science-6-info"  style="display:none; line-height: 1;">Understand the interconnectedness of the natural world and our responsibility as humans to live sustainably.</li>
+            <li class="science-6-info"  style="display:none; line-height: 1;">Design and program robots using Lego Mindstorms.</li>
+            <li class="science-6-info"  style="display:none; line-height: 1;">Understand how the fossil record is used to determine changes in environment as well as the evolution of species.</li>
+            <li class="science-6-info"  style="display:none; line-height: 1;">Make conclusions based on inferences, observations, evaluation and analysis of data.</li>
+          </ul>
+        <p class="science-7-info" style="display:none;"><strong>In Science, students will be able to:</strong></p>
+          <ul>
+            <li class="science-7-info"  style="display:none; line-height: 1;">Understand the structure and function of living systems.</li>
+            <li class="science-7-info"  style="display:none; line-height: 1;">Recognize the interactions and interdependence between biotic and abiotic factors within ecosystems including our role as human beings.</li>
+            <li class="science-7-info"  style="display:none; line-height: 1;">Relate the adaptability of organisms in their environments to their heritable traits.</li>
+            <li class="science-7-info"  style="display:none; line-height: 1;">Develop personalized questions, experiments to answer these questions and convey results in a written lab report.</li>
+            <li class="science-7-info"  style="display:none; line-height: 1;">Recognize the importance of nutrition and exercise.</li>
+            <li class="science-7-info"  style="display:none; line-height: 1;">Recognize our responsibility as humans to live sustainably with regard to our environment and natural resources.</li>
+          </ul>
+        <p class="science-8-info" style="display:none;"><strong>In Science, students will be able to:</strong></p>
+          <ul>
+            <li class="science-8-info"  style="display:none; line-height: 1;">Understand the organization, structure, and properties of matter which are a result of atomic structure and behavior.</li>
+            <li class="science-8-info"  style="display:none; line-height: 1;">Define energy according to its many forms.</li>
+            <li class="science-8-info"  style="display:none; line-height: 1;">Develop personalized questions, experiments to answer these questions and convey results in a written lab report.</li>
+            <li class="science-8-info"  style="display:none; line-height: 1;">Safely design and carry out experiments using lab chemicals.</li>
+            <li class="science-8-info"  style="display:none; line-height: 1;">Design devices and develop models which reflect their understanding of physical science concepts.</li>
+            <li class="science-8-info"  style="display:none; line-height: 1;">Practice sustainable use of natural resources through an awareness of the sources of energy and every day materials.</li>
+          </ul>
+
+
+        </div>
+      </div>
+
+      <button class="accordion">Math</button>
+      <div class="panel">
+        <!-- <p class="statement" style="color: #00356f;">"Philsophy Statement"</p> -->
+        <p style="font-style:oblique; opacity: 0.4; margin-top: 0px;">choose a grade level for more info</p>
+        <div class="centered-table">
+          <table class="table-view lower">
+            <tr>
+              <th class="lower-header" colspan="6">Lower</th>
+            </tr>
+            <tr>
+              <td>
+                <span class="grade" id="math-jk" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">JK</span>
+                <span class="grade" id="math-k" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">K</span>
+                <span class="grade" id="math-1" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">1</span>
+                <span class="grade" id="math-2" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">2</span>
+                <span class="grade" id="math-3" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">3</span>
+                <span class="grade" id="math-4" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">4</span>
+              </td>
+            </tr>
+          </table>
+          <table class="table-view upper" style="border:none">
+            <th class="upper-header" colspan="4">Middle</th>
+            <tr>
+              <td>
+                <span class="grade" id="math-5" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">5</span>
+                <span class="grade" id="math-6" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">6</span>
+                <span class="grade" id="math-7" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">7</span>
+                <span class="grade" id="math-8" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">8</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="info">
+          <p class="math-jk-info" style="display:none;"><strong>In Math, students will be able to:</strong></p>
+            <ul>
+              <li class="math-jk-info"  style="display:none; line-height: 1;">Think and talk about, and try to solve math problems.</li>
+              <li class="math-jk-info"  style="display:none; line-height: 1;">Talk about math thinking.</li>
+              <li class="math-jk-info"  style="display:none; line-height: 1;">Communicate thoughts by talking, drawing, or using hand gestures.</li>
+              <li class="math-jk-info"  style="display:none; line-height: 1;">See relationships between and among numbers, math concepts, and the world.</li>
+              <li class="math-jk-info"  style="display:none; line-height: 1;">Show math ideas by building, drawing, or representing otherwise.</li>
+              <li class="math-jk-info"  style="display:none; line-height: 1;">Count up to 5 using 1:1 correspondence.</li>
+              <li class="math-jk-info"  style="display:none; line-height: 1;">Determine quantities up to 5 without counting.</li>
+              <li class="math-jk-info"  style="display:none; line-height: 1;">Understand cardinality to 5.</li>
+              <li class="math-jk-info"  style="display:none; line-height: 1;">Compare and contrast objects using attributes.</li>
+              <li class="math-jk-info"  style="display:none; line-height: 1;">Find and describe shapes and examine their relationships and attributes.</li>
+              <li class="math-jk-info"  style="display:none; line-height: 1;">Develop spatial reasoning through play.</li>
+              <li class="math-jk-info"  style="display:none; line-height: 1;">Use the vocabulary of object positions, such as “above,” “below,” and “next to.”</li>
+            </ul>
+          <p class="math-k-info" style="display:none;"><strong>In Math, students will be able to:</strong></p>
+            <ul>
+              <li class="math-k-info"  style="display:none; line-height: 1;">Think and talk about, and try to solve math problems.</li>
+              <li class="math-k-info"  style="display:none; line-height: 1;">Talk about math thinking, and listen to the thinking of others.</li>
+              <li class="math-k-info"  style="display:none; line-height: 1;">Communicate thoughts by talking, drawing, or using hand gestures.</li>
+              <li class="math-k-info"  style="display:none; line-height: 1;">See relationships and make connections between and among numbers, math concepts, and the world. </li>
+              <li class="math-k-info"  style="display:none; line-height: 1;">Show math ideas by building, drawing, or representing otherwise.</li>
+              <li class="math-k-info"  style="display:none; line-height: 1;">Know number names and the count sequence, count to determine the number of objects, compare numbers using the phrases, “more than,” “less than,” and “equal to.”</li>
+              <li class="math-k-info"  style="display:none; line-height: 1;">Work with the whole numbers 1-10 to gain foundation for place value.</li>
+              <li class="math-k-info"  style="display:none; line-height: 1;">Understand addition as joining objects/adding to, and subtraction as separating a set of objects/taking from.</li>
+              <li class="math-k-info"  style="display:none; line-height: 1;"> Order, compare, and describe objects by size, length, capacity and weight, begin to understand and use measuring processes and tools, describe and compare measurable attributes.</li>
+              <li class="math-k-info"  style="display:none; line-height: 1;">Collect, classify, and represent data.</li>
+              <li class="math-k-info"  style="display:none; line-height: 1;">Reason with shapes and their attributes.</li>
+            </ul>
+          <p class="math-1-info" style="display:none;"><strong>In Math, students will be able to:</strong></p>
+            <ul>
+              <li class="math-1-info"  style="display:none; line-height: 1;">Use a variety of strategies to solve math problems and persevere in solving them.</li>
+              <li class="math-1-info"  style="display:none; line-height: 1;">Attend to precision</li>
+              <li class="math-1-info"  style="display:none; line-height: 1;">Share and defend mathematical ideas and listens to the ideas of others.</li>
+              <li class="math-1-info"  style="display:none; line-height: 1;"> Draw, write, and share mathematical strategies and ideas.</li>
+              <li class="math-1-info"  style="display:none; line-height: 1;">Identify and use patterns in math.</li>
+              <li class="math-1-info"  style="display:none; line-height: 1;">Build, draw, act out, or use other strategies to model mathematical thinking.</li>
+              <li class="math-1-info"  style="display:none; line-height: 1;">Understand, make, represent, and take apart numbers in flexible ways.</li>
+              <li class="math-1-info"  style="display:none; line-height: 1;">Understand, construct, and deconstruct numbers in two-digit place value.</li>
+              <li class="math-1-info"  style="display:none; line-height: 1;">Understand and use properties of addition to solve addition and subtraction problems, understand and use the relationship between addition and subtraction to solve problems, use a variety of strategies to accurately solve addition and subtraction problems through 20.</li>
+              <li class="math-1-info"  style="display:none; line-height: 1;">Measure lengths indirectly and by iterating length units, tell and write time, identify coins and bills.</li>
+              <li class="math-1-info"  style="display:none; line-height: 1;">Represent and interpret data.</li>
+              <li class="math-1-info"  style="display:none; line-height: 1;">Reason with shapes and their attributes.</li>
+            </ul>
+          <p class="math-2-info" style="display:none;"><strong>In Math, students will be able to:</strong></p>
+            <ul>
+              <li class="math-2-info"  style="display:none; line-height: 1;">Make sense of problems and persevere in solving them using a variety of strategies.</li>
+              <li class="math-2-info"  style="display:none; line-height: 1;">Attend to precision.</li>
+              <li class="math-2-info"  style="display:none; line-height: 1;">Construct, prove, and defend logical mathematical ideas.</li>
+              <li class="math-2-info"  style="display:none; line-height: 1;">Draw, write, and share math strategies and listen to understand the thinking of others.</li>
+              <li class="math-2-info"  style="display:none; line-height: 1;">Identify and use patterns in math. Begin to make connections from one concept in math to another.</li>
+              <li class="math-2-info"  style="display:none; line-height: 1;">Build, draw, act out, or use other strategies to model mathematical thinking.</li>
+              <li class="math-2-info"  style="display:none; line-height: 1;">Use the base-ten system flexibly and strategically to solve math tasks.</li>
+              <li class="math-2-info"  style="display:none; line-height: 1;">Use strategies and models to add and subtract.</li>
+              <li class="math-2-info"  style="display:none; line-height: 1;">Measure and estimate lengths in standard and metric units using the most efficient tool, understand and use appropriate units to tell time and count money.</li>
+              <li class="math-2-info"  style="display:none; line-height: 1;">Represent and interpret data.</li>
+              <li class="math-2-info"  style="display:none; line-height: 1;">Recognize and draw shapes having specified attributes, and divide shapes into equal parts, see and divide a variety of shapes into equal parts.</li>
+            </ul>
+          <p class="math-3-info" style="display:none;"><strong>In Math, students will be able to:</strong></p>
+            <ul>
+              <li class="math-3-info"  style="display:none; line-height: 1;">Make sense of problems, and persevere in solving them using a variety of math tools and strategies.</li>
+              <li class="math-3-info"  style="display:none; line-height: 1;">Attend to precision.</li>
+              <li class="math-3-info"  style="display:none; line-height: 1;">Construct, prove, and defend logical mathematical ideas.</li>
+              <li class="math-3-info"  style="display:none; line-height: 1;">Draw, write, and share mathematical strategies and critique the reasoning of others.</li>
+              <li class="math-3-info"  style="display:none; line-height: 1;">Identify and use patterns in math. Make connections from one concept in math to another. </li>
+              <li class="math-3-info"  style="display:none; line-height: 1;">Build, draw, act out, or use other strategies to model mathematical thinking that can be understood by self and others.</li>
+              <li class="math-3-info"  style="display:none; line-height: 1;">Use knowledge of place value to solve multi-digit addition and subtraction problems.</li>
+              <li class="math-3-info"  style="display:none; line-height: 1;">Use properties and strategies to solve problems, automatically identify multiplication facts through 10 x 10.</li>
+              <li class="math-3-info"  style="display:none; line-height: 1;">Understand fractions as equal parts of a set or whole, understand equivalence of fractions using a variety of strategies, order and compare fractions.</li>
+              <li class="math-3-info"  style="display:none; line-height: 1;">Measure distance, amount, volume, and capacity accurately using appropriate tools.</li>
+              <li class="math-3-info"  style="display:none; line-height: 1;">Draw and interpret graphs from a given data set.</li>
+              <li class="math-3-info"  style="display:none; line-height: 1;">Understand, model, and compute area and perimeter of two-dimensional objects, understand and draw shapes and their attributes.</li>
+            </ul>
+          <p class="math-4-info" style="display:none;"><strong>In Math, students will be able to:</strong></p>
+            <ul>
+              <li class="math-4-info"  style="display:none; line-height: 1;">Make sense of problems, and persevere in solving them using a variety of math tools and strategies accurately.</li>
+              <li class="math-4-info"  style="display:none; line-height: 1;"> Attend to precision.</li>
+              <li class="math-4-info"  style="display:none; line-height: 1;">Construct, prove, and defend logical mathematical ideas.</li>
+              <li class="math-4-info"  style="display:none; line-height: 1;">Draw, write, and share mathematical strategies and critique the reasoning of others.</li>
+              <li class="math-4-info"  style="display:none; line-height: 1;">Identify and use patterns in math. Strengthen connections from one concept in math to another to deepen understanding.</li>
+              <li class="math-4-info"  style="display:none; line-height: 1;">Build, draw, act out, or use other strategies to model mathematical thinking that can be understood by self and others.</li>
+              <li class="math-4-info"  style="display:none; line-height: 1;">Understand and use place value through one million.</li>
+              <li class="math-4-info"  style="display:none; line-height: 1;">Use the four operations with whole numbers to solve multi-digit problems, develop quick recall of related multiplication and division facts, develop fluency with whole number multiplication, order, compare, and combine fractions and decimals, develop an understanding of decimals, including the connections between fractions and decimals.</li>
+              <li class="math-4-info"  style="display:none; line-height: 1;">Demonstrate an understanding of area and determine area of two-dimensional shapes.</li>
+              <li class="math-4-info"  style="display:none; line-height: 1;">Represent data by creating a variety of graphs and tables.</li>
+              <li class="math-4-info"  style="display:none; line-height: 1;">Draw, classify, and identify types of shapes and lines.</li>
+            </ul>
+          <p class="math-5-info" style="display:none;"><strong>In Math, students will be able to:</strong></p>
+            <ul>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Make sense of problems, and persevere in solving them using a variety of math tools and strategies.</li>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Use logic to construct, prove, and defend mathematical ideas.</li>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Draw, write, and share mathematical strategies and constructively critique the reasoning of others.</li>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Attend to precision.</li>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Identify and use patterns in math. Make connections from one concept in math to another.</li>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Build, draw, and formulate strategies to model mathematical thinking that can be understood by self and others.</li>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Follow Order of Operations.</li>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Develop fluency in division using the algorithm including 2-digit divisors.</li>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Understand negative numbers in context.</li>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Identify common factors and multiples.</li>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Explore prime numbers and composite numbers.</li>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Fluently add and subtract fractions and decimals.</li>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Develop understanding of multiplying and dividing fractions, decimals, and whole numbers.</li>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Continue to develop understanding in place value through millions and millionths.</li>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Use patterns, models, and relationships to solve simple equations.</li>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Construct and analyze double-bar and line graphs, and use ordered pairs and coordinate grids.</li>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Learn properties of geometric solids.</li>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Decompose 3-D shapes, such as rectangular prisms, to find surface area.</li>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Use and understand area formulas for rectangles, triangles, and circles.</li>
+              <li class="math-5-info"  style="display:none; line-height: 1;">Understand, estimate and measure volume for rectangular prisms.</li>
+            </ul>
+          <p class="math-6-info" style="display:none;"><strong>In Math, students will be able to:</strong></p>
+            <ul>
+              <li class="math-6-info"  style="display:none; line-height: 1;">Connect ratio and rate to whole number multiplication and division.</li>
+              <li class="math-6-info"  style="display:none; line-height: 1;">View equivalent ratios and rates as deriving from, and extending, pairs of rows/columns in the multiplication table.</li>
+              <li class="math-6-info"  style="display:none; line-height: 1;">Connect ratios and fractions.</li>
+              <li class="math-6-info"  style="display:none; line-height: 1;">Understand the concept of a unit rate and ratio.</li>
+              <li class="math-6-info"  style="display:none; line-height: 1;">Fluently add, subtract, multiply, and divide multi-digit numbers and decimals using the standard algorithm.</li>
+              <li class="math-6-info"  style="display:none; line-height: 1;">Understand fraction division.</li>
+              <li class="math-6-info"  style="display:none; line-height: 1;">Extend the number line to represent the coordinate plane and graph points on it.</li>
+              <li class="math-6-info"  style="display:none; line-height: 1;">Understand absolute value.</li>
+              <li class="math-6-info"  style="display:none; line-height: 1;">Develop addition and subtraction of negative numbers.</li>
+              <li class="math-6-info"  style="display:none; line-height: 1;">Recognize multiplication and division of negative numbers.</li>
+              <li class="math-6-info"  style="display:none; line-height: 1;">Model situations by writing expressions and equations.</li>
+              <li class="math-6-info"  style="display:none; line-height: 1;">Use expressions and formulas to solve problems.</li>
+              <li class="math-6-info"  style="display:none; line-height: 1;">Understand algebraic equivalence and simplify algebraic expressions.</li>
+              <li class="math-6-info"  style="display:none; line-height: 1;">Know that the solutions of an equation are the values of the variables that make the equation true.</li>
+              <li class="math-6-info"  style="display:none; line-height: 1;">Use properties of equality to solve one-step equations.</li>
+              <li class="math-6-info"  style="display:none; line-height: 1;">Solve problems involving area, surface area, and volume, including by composing or decomposing shapes into other shapes.</li>
+              <li class="math-6-info"  style="display:none; line-height: 1;">Develop understanding of statistical variability.</li>
+              <li class="math-6-info"  style="display:none; line-height: 1;">Use dot plots, histograms, and box plots to display numerical data.</li>
+              <li class="math-6-info"  style="display:none; line-height: 1;">Understand the difference between measures of center and measures of variability.</li>
+              <li class="math-6-info"  style="display:none; line-height: 1;">Understand distribution and how it can be described</li>
+            </ul>
+            <p class="math-6-info" style="display:none;"><strong>Download Hillbrook's 6th Grade Math Overview:</strong> <button id="pdf-button" type="button" name="button"><a href="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/194/misc/misc_233155.pdf">Learn More</a></button></p>
+          <p class="math-7-info" style="display:none;"><strong>In Math, students will be able to:</strong></p>
+            <ul>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Draw informal comparative inferences about two populations.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Use random sampling to draw inferences about a population</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Investigate chance processes and develop, use, and evaluate probability models.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Investigate patterns of association in bivariate data.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Interpret the structure of expressions.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Write expressions in equivalent forms to solve problems.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Perform arithmetic operations on polynomials.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Understand the relationship between zeros and factors of polynomials.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Use polynomial identities to solve problems.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Rewrite rational functions.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Create equations that describe numbers or relationships.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Understand solving equations as a process of reasoning and explain the reasoning.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Solve equations and inequalities in one variable.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Solve systems of equations.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Represent and solve equations and inequalities graphically.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Understand the concept of a function and use function notation</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Interpret functions that arise in applications in terms of the context.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Analyze functions using different representations.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Build functions.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Build a function that models a relationship between two quantities.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Build new functions from existing functions.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Construct and compare linear and exponential models and solve problems.</li>
+              <li class="math-7-info"  style="display:none; line-height: 1;">Interpret expressions for functions in terms of the situation they model.</li>
+            </ul>
+            <p class="math-7-info" style="display:none;"><strong>Download Hillbrook's 7th Grade Integrated Math Overview:</strong> <button id="pdf-button" type="button" name="button"><a href="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/194/misc/misc_233156.pdf">Learn More</a></button></p>
+            <p class="math-7-info" style="display:none;"><strong>Download Hillbrook's 7th Grade Algebra Overview:</strong> <button id="pdf-button" type="button" name="button"><a href="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/194/misc/misc_233157.pdf">Learn More</a></button></p>
+          <p class="math-8-info" style="display:none;"><strong>In Math, students will be able to:</strong></p>
+            <ul>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Interpret the structure of expressions.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Write expressions in equivalent forms to solve problems.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Perform arithmetic operations on polynomials.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Understand the relationship between zeros and factors of polynomials.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Use polynomial identities to solve problems.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Rewrite rational functions.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Create equations that describe numbers or relationships.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Understand solving equations as a process of reasoning and explain the reasoning.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Solve equations and inequalities in one variable.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Solve systems of equations.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Represent and solve equations and inequalities graphically.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Understand the concept of a function and use function notation.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Interpret functions that arise in applications in terms of the context.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Analyze functions using different representations.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Build functions.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Build a function that models a relationship between two quantities.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Build new functions from existing functions.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Construct and compare linear and exponential models and solve problems.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Interpret expressions for functions in terms of the situation they model.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Experiment with transformations in the plane.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Understand congruence in terms of rigid motions.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Prove geometric theorems.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Make geometric constructions.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Understand similarity in terms of similarity transformations.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Prove theorems involving similarity.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Define trigonometric ratios and solve problems involving right triangles.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Apply trigonometry to general triangles.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Understand and apply theorems about circles.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Find arc lengths and areas of sectors of circles.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Translate between the geometric description and the equation for a conic section.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Use coordinates to prove simple geometric theorems algebraically.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Explain volume formulas and use them to solve problems.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Visualize relationships between two-dimensional and three-dimensional objects.</li>
+              <li class="math-8-info"  style="display:none; line-height: 1;">Apply geometric concepts in modeling situations.</li>
+            </ul>
+            <p class="math-8-info" style="display:none;"><strong>Download Hillbrook's 8th Grade Algebra Overview:</strong> <button id="pdf-button" type="button" name="button"><a href="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/194/misc/misc_233157.pdf">Learn More</a></button></p>
+            <p class="math-8-info" style="display:none;"><strong>Download Hillbrook's 8th Grade Geometry Overview:</strong> <button id="pdf-button" type="button" name="button"><a href="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/194/misc/misc_233158.pdf">Learn More</a></button></p>
+
+        </div>
+      </div>
+
+      <button class="accordion">Social Studies/History</button>
+      <div class="panel">
+        <!-- <p class="statement" style="color: #00356f;">"Philsophy Statement"</p> -->
+        <p style="font-style:oblique; opacity: 0.4; margin-top: 0px;">choose a grade level for more info</p>
+        <div class="centered-table">
+          <table class="table-view lower">
+            <tr>
+              <th class="lower-header" colspan="6">Lower</th>
+            </tr>
+            <tr>
+              <td>
+                <span class="grade" id="history-jk" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">JK</span>
+                <span class="grade" id="history-k" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">K</span>
+                <span class="grade" id="history-1" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">1</span>
+                <span class="grade" id="history-2" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">2</span>
+                <span class="grade" id="history-3" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">3</span>
+                <span class="grade" id="history-4" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">4</span>
+              </td>
+            </tr>
+          </table>
+          <table class="table-view upper" style="border:none">
+            <th class="upper-header" colspan="4">Middle</th>
+            <tr>
+              <td>
+                <span class="grade" id="history-5" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">5</span>
+                <span class="grade" id="history-6" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">6</span>
+                <span class="grade" id="history-7" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">7</span>
+                <span class="grade" id="history-8" onmouseover="plus(this)" onclick="displayInfo(this)" onmouseout="text(this)">8</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="info">
+          <p class="history-jk-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="history-jk-info"  style="display:none; line-height: 1;">Express and share ideas of ways to help our earth and immediate community.</li>
+              <li class="history-jk-info"  style="display:none; line-height: 1;">Learn about farms and understand how they impact the community.</li>
+            </ul>
+          <p class="history-k-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="history-k-info"  style="display:none; line-height: 1;">Develop awareness beyond themselves and recognize similarities and differences in the world around them (classmates, family, community, and other cultures/groups).</li>
+              <li class="history-k-info"  style="display:none; line-height: 1;">Develop respect, knowledge, and appreciation for the natural world and describe the consequences of human actions upon the natural world</li>
+            </ul>
+          <p class="history-1-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="history-1-info"  style="display:none; line-height: 1;">Develop awareness beyond themselves and recognize similarities and differences in the world around them (classmates, family, community, and other cultures/groups).</li>
+              <li class="history-1-info"  style="display:none; line-height: 1;">Develop respect, knowledge, and appreciation for the natural world and describe the consequences of human actions upon the natural world</li>
+              <li class="history-1-info"  style="display:none; line-height: 1;">Define a community.</li>
+              <li class="history-1-info"  style="display:none; line-height: 1;">Identify goods, services, wants, and needs.</li>
+            </ul>
+          <p class="history-2-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="history-2-info"  style="display:none; line-height: 1;">Identify the 7 continents and major oceans.</li>
+              <li class="history-2-info"  style="display:none; line-height: 1;">Apply basic skill map skills (cardinal directions, map key).</li>
+              <li class="history-2-info"  style="display:none; line-height: 1;">Define a community.</li>
+              <li class="history-2-info"  style="display:none; line-height: 1;">Identify goods, services, wants, and needs.</li>
+              <li class="history-2-info"  style="display:none; line-height: 1;">Locate and identify at least 4 countries in Africa.</li>
+            </ul>
+          <p class="history-3-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="history-3-info"  style="display:none; line-height: 1;">Compare and contrast common themes in mythology between India, Ancient Greece, and Ancient China.</li>
+              <li class="history-3-info"  style="display:none; line-height: 1;">Know where India, Greece, and China are located.</li>
+            </ul>
+          <p class="history-4-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="history-4-info"  style="display:none; line-height: 1;">Examine California history from different perspectives.</li>
+              <li class="history-4-info"  style="display:none; line-height: 1;">Develop research questions that require synthesis and analysis.</li>
+              <li class="history-4-info"  style="display:none; line-height: 1;">Begin to use technological and print resources to research.</li>
+              <li class="history-4-info"  style="display:none; line-height: 1;">Write research report on the Gold Rush</li>
+            </ul>
+          <p class="history-5-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="history-5-info"  style="display:none; line-height: 1;">Develop historical empathy and be able to write from a first person perspective about life in different historical eras.</li>
+              <li class="history-5-info"  style="display:none; line-height: 1;">Understand geography and history of pre-Columbian America.</li>
+              <li class="history-5-info"  style="display:none; line-height: 1;">Explain political, social and economic life in Colonial America.</li>
+              <li class="history-5-info"  style="display:none; line-height: 1;">Understand and debate the causes of the American Revolution and the Civil War.</li>
+              <li class="history-5-info"  style="display:none; line-height: 1;">Recognize geographic terms, understand physical geography and how it impacts history, and identify U.S. states and capitals.</li>
+            </ul>
+          <p class="history-6-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="history-6-info"  style="display:none; line-height: 1;">Understand the distribution of power and the organization of medieval societies in Europe, the Middle East and North Africa.</li>
+              <li class="history-6-info"  style="display:none; line-height: 1;">Recognize historical contributions within the context of the A.S.P.I.R.E. lens (architecture, social structure, religion, political organization, ideas and inventions and education).</li>
+              <li class="history-6-info"  style="display:none; line-height: 1;">Compile and synthesize research from various sources.</li>
+              <li class="history-6-info"  style="display:none; line-height: 1;">Complete teacher created study guides and generate study guides independently.</li>
+              <li class="history-6-info"  style="display:none; line-height: 1;">Demonstrate geographic literacy by labeling contemporary political maps of Europe, the Middle East, and Africa and locating major physical features.</li>
+            </ul>
+          <p class="history-7-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="history-7-info"  style="display:none; line-height: 1;">Examine the civilizations of Mesopotamia, India and China through the lenses of success and sustainability.</li>
+              <li class="history-7-info"  style="display:none; line-height: 1;">Read and glean pertinent information from a variety of media ranging from news articles, primary sources, secondary sources, internet sources, and historical fiction.</li>
+              <li class="history-7-info"  style="display:none; line-height: 1;">Source references appropriately.</li>
+              <li class="history-7-info"  style="display:none; line-height: 1;">Demonstrate proficiency in note-taking, organization,and test preparation.</li>
+              <li class="history-7-info"  style="display:none; line-height: 1;">Identify Middle Eastern, Central and Southeast Asian countries and physical features.</li>
+            </ul>
+          <p class="history-8-info" style="display:none;"><strong>Students will:</strong></p>
+            <ul>
+              <li class="history-8-info"  style="display:none; line-height: 1;">Possess a deeper understanding of U.S. History through a social justice lens.</li>
+              <li class="history-8-info"  style="display:none; line-height: 1;">Present thoughts and ideas in discussions using socratic dialogue, powerpoint, wikispaces, and small group work.</li>
+              <li class="history-8-info"  style="display:none; line-height: 1;">Explore and utilize various primary and secondary sources to create and reinforce a thesis with clearer intent and manipulate these ideas into a well crafted essay.</li>
+              <li class="history-8-info"  style="display:none; line-height: 1;">Master study skills and note-taking skills, organization of notes and information, and presentation skills.</li>
+              <li class="history-8-info"  style="display:none; line-height: 1;">Expand geographic knowledge of North America and South America.</li>
+            </ul>
+        </div>
+      </div>
+
+      <button class="accordion">Arts</button>
+      <div class="panel">
+        <!-- <p class="statement" style="color: #00356f;">"Philsophy Statement"</p> -->
+        <p style="font-style:oblique; opacity: 0.4; margin-top: 0px;">choose a grade level for more info</p>
+        <div class="centered-table">
+          <table class="table-view lower">
+            <tr>
+              <th class="lower-header" colspan="6">Lower</th>
+            </tr>
+            <tr>
+              <td>
+                <span class="grade" id="arts-jk" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">JK</span>
+                <span class="grade" id="arts-k" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">K</span>
+                <span class="grade" id="arts-1" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">1</span>
+                <span class="grade" id="arts-2" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">2</span>
+                <span class="grade" id="arts-3" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">3</span>
+                <span class="grade" id="arts-4" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">4</span>
+              </td>
+            </tr>
+          </table>
+          <table class="table-view upper" style="border:none">
+            <th class="upper-header" colspan="4">Middle</th>
+            <tr>
+              <td>
+                <span class="grade" id="arts-5" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">5</span>
+                <span class="grade" id="arts-6" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">6</span>
+                <span class="grade" id="arts-7" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">7</span>
+                <span class="grade" id="arts-8" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">8</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="info">
+          <p class="arts-jk-info" style="display:none;"><strong>In Art, students will be able to:</strong></p>
+            <ul>
+              <li class="arts-jk-info"  style="display:none; line-height: 1;">Write their own name on their artwork.</li>
+              <li class="arts-jk-info"  style="display:none; line-height: 1;">Name the six colors on the color wheel and identify red, yellow and blue as “primary.”</li>
+              <li class="arts-jk-info"  style="display:none; line-height: 1;">Manipulate scissors to cut straight lines and basic shapes.</li>
+              <li class="arts-jk-info"  style="display:none; line-height: 1;">Follow step-by-step drawing instruction.</li>
+              <li class="arts-jk-info"  style="display:none; line-height: 1;">Have been introduced to procedures for set up and clean up.</li>
+              <li class="arts-jk-info"  style="display:none; line-height: 1;">Create a 3-dimensional ceramic sculpture i.e., a pinch pot.</li>
+            </ul>
+          <p class="arts-jk-info" style="display:none;"><strong>In Music, students will be able to:</strong></p>
+            <ul>
+              <li class="arts-jk-info"  style="display:none; line-height: 1;">Experience beat and rhythm through movement, songs, games, poems, stories, and drama.</li>
+              <li class="arts-jk-info"  style="display:none; line-height: 1;">Explore and play small percussion instruments.</li>
+            </ul>
+          <p class="arts-k-info" style="display:none;"><strong>In Art, students will be able to:</strong></p>
+            <ul>
+              <li class="arts-k-info"  style="display:none; line-height: 1;">Write their own name on their artwork.</li>
+              <li class="arts-k-info"  style="display:none; line-height: 1;">Name the six colors on the color wheel and identify red, yellow and blue as “primary.”</li>
+              <li class="arts-k-info"  style="display:none; line-height: 1;">Successfully mix the primary colors to make the secondary colors with paint.</li>
+              <li class="arts-k-info"  style="display:none; line-height: 1;">Manipulate scissors to cut straight lines and shapes.</li>
+              <li class="arts-k-info"  style="display:none; line-height: 1;">Follow step-by-step drawing instruction.</li>
+              <li class="arts-k-info"  style="display:none; line-height: 1;">Have an awareness of abstract art.</li>
+              <li class="arts-k-info"  style="display:none; line-height: 1;">Understand the importance of the horizon line.</li>
+              <li class="arts-k-info"  style="display:none; line-height: 1;">Successfully join two pieces of clay together using the score and slip method.</li>
+              <li class="arts-k-info"  style="display:none; line-height: 1;">Have been introduced to procedures for set up and clean up.</li>
+              <li class="arts-k-info"  style="display:none; line-height: 1;">Appreciate and identify master artists and their style and/or technique.</li>
+
+            </ul>
+          <p class="arts-k-info" style="display:none;"><strong>In Music, students will be able to:</strong></p>
+            <ul>
+              <li class="arts-k-info"  style="display:none; line-height: 1;">Sing songs and play games from diverse cultures.</li>
+              <li class="arts-k-info"  style="display:none; line-height: 1;">Use drama, music, and creative movement to illustrate shared stories and poems.</li>
+              <li class="arts-k-info"  style="display:none; line-height: 1;">Read graphic notation to symbolize beat and instrumental/vocal sounds.</li>
+              <li class="arts-k-info"  style="display:none; line-height: 1;">Identify accompaniments and compose with percussion.</li>
+            </ul>
+          <p class="arts-1-info" style="display:none;"><strong>In Art, students will be able to:</strong></p>
+            <ul>
+              <li class="arts-1-info"  style="display:none; line-height: 1;">Appreciate and identify master artists and their style and/or technique i.e., Picasso, Kandinsky, George Rogrigue.</li>
+              <li class="arts-1-info"  style="display:none; line-height: 1;">Identify complementary colors on the color wheel and know that when mixed together they make brown.</li>
+              <li class="arts-1-info"  style="display:none; line-height: 1;">Have experience drawing from life i.e., their own shoe.</li>
+              <li class="arts-1-info"  style="display:none; line-height: 1;">Recognize the difference between organic and geometric shapes.</li>
+              <li class="arts-1-info"  style="display:none; line-height: 1;">Create ceramic sculptures i.e., a pig and cupcake or bird bath.</li>
+              <li class="arts-1-info"  style="display:none; line-height: 1;">Have been introduced to new art mediums i.e., chalk pastels.</li>
+            </ul>
+          <p class="arts-1-info" style="display:none;"><strong>In Music, students will be able to:</strong></p>
+            <ul>
+              <li class="arts-1-info"  style="display:none; line-height: 1;">Read and recognize basic rhythmic values and patterns of quarter note, quarter rest, and eighth note.</li>
+              <li class="arts-1-info"  style="display:none; line-height: 1;">Sing with accuracy from memory in an age appropriate range.</li>
+              <li class="arts-1-info"  style="display:none; line-height: 1;">Explore moods and emotions through music.</li>
+              <li class="arts-1-info"  style="display:none; line-height: 1;">Explore simple form and improvise melodies and ostinati on xylophones.</li>
+            </ul>
+          <p class="arts-2-info" style="display:none;"><strong>In Art, students will be able to:</strong></p>
+            <ul>
+              <li class="arts-2-info"  style="display:none; line-height: 1;">Have a more thorough understanding of color theory.</li>
+              <li class="arts-2-info"  style="display:none; line-height: 1;">Create a ceramic animal using the “pull and pinch” method .</li>
+              <li class="arts-2-info"  style="display:none; line-height: 1;">Know how to roll out a slab of clay to create a leaf bowl and ceramic frame.</li>
+              <li class="arts-2-info"  style="display:none; line-height: 1;">Respect and appreciate each other's artistic expression.</li>
+              <li class="arts-2-info"  style="display:none; line-height: 1;">Be able to draw a 3D object on a 2D surface ie. Planets of the solar system.</li>
+              <li class="arts-2-info"  style="display:none; line-height: 1;">Continue study of Master artists i.e., Kieth Haring, Modigliani, Mondrian, Klimpt etc..</li>
+            </ul>
+          <p class="arts-2-info" style="display:none;"><strong>In Music, students will be able to:</strong></p>
+            <ul>
+              <li class="arts-2-info"  style="display:none; line-height: 1;">Read and recognize half notes and half rest.</li>
+              <li class="arts-2-info"  style="display:none; line-height: 1;">Read play, and create complementary rhythms.</li>
+              <li class="arts-2-info"  style="display:none; line-height: 1;">Sing songs with accuracy in canon.</li>
+              <li class="arts-2-info"  style="display:none; line-height: 1;">Sing and play on the xylophones in the full pentatonic scale.</li>
+              <li class="arts-2-info"  style="display:none; line-height: 1;">Explore creative movement and folk dances.</li>
+              <li class="arts-2-info"  style="display:none; line-height: 1;">Perform dances and songs from Ghana/Africa in collaboration with Homeroom and Art.</li>
+            </ul>
+          <p class="arts-3-info" style="display:none;"><strong>In Art, students will be able to:</strong></p>
+            <ul>
+              <li class="arts-3-info"  style="display:none; line-height: 1;">Understand and use a variety of tools and materials for making art.</li>
+              <li class="arts-3-info"  style="display:none; line-height: 1;">Understand and demonstrate safety procedures for use of tools in art studios.</li>
+              <li class="arts-3-info"  style="display:none; line-height: 1;">Have developed an awareness of how observation leads to creation.</li>
+              <li class="arts-3-info"  style="display:none; line-height: 1;">Develop confidence in expressive abilities.</li>
+              <li class="arts-3-info"  style="display:none; line-height: 1;">Use proper procedures for set-up, use, and clean-up.</li>
+            </ul>
+          <p class="arts-3-info" style="display:none;"><strong>In Music, students will be able to:</strong></p>
+            <ul>
+              <li class="arts-3-info"  style="display:none; line-height: 1;">Read and recognize dotted quarter notes, whole notes, and rests.</li>
+              <li class="arts-3-info"  style="display:none; line-height: 1;">Compose in small groups using complementary rhythmic and melodic ostinato in simple rondo form.</li>
+              <li class="arts-3-info"  style="display:none; line-height: 1;">Understand dynamics, tempo, and timbre.</li>
+              <li class="arts-3-info"  style="display:none; line-height: 1;">Sing, play songs, and perform dances from India and Greece in collaboration with Homeroom and Art.</li>
+            </ul>
+          <p class="arts-4-info" style="display:none;"><strong>In Art, students will be able to:</strong></p>
+            <ul>
+              <li class="arts-4-info"  style="display:none; line-height: 1;">Organize and track many pieces of an individual project.</li>
+              <li class="arts-4-info"  style="display:none; line-height: 1;">Become more familiar with self-expression through a variety of materials and processes.</li>
+              <li class="arts-4-info"  style="display:none; line-height: 1;">Understand basics of video editing and animation on a computer.</li>
+            </ul>
+          <p class="arts-4-info" style="display:none;"><strong>In Music, students will be able to:</strong></p>
+            <ul>
+              <li class="arts-4-info"  style="display:none; line-height: 1;">Recognize, read, and write note values in both duple and triple meter (2/4, 4/4, 3/4, & 6/8).</li>
+              <li class="arts-4-info"  style="display:none; line-height: 1;">Sing a variety of American folk songs in two and three part harmony, and sing partner songs and rounds.</li>
+              <li class="arts-4-info"  style="display:none; line-height: 1;">Learn to play the soprano recorder and baritone ukelele with proper technique, and develop ensemble skills on Orff instruments (xylophones and percussion).</li>
+              <li class="arts-4-info"  style="display:none; line-height: 1;">Improvise, compose, and notate songs for the recorder.</li>
+              <li class="arts-4-info"  style="display:none; line-height: 1;">Perform songs and folk dances related to California history and the Gold Rush era, and American play party songs and dances.</li>
+            </ul>
+          <p class="arts-5-info" style="display:none;"><strong>In Art, students will be able to:</strong></p>
+            <ul>
+              <li class="arts-5-info"  style="display:none; line-height: 1;">Use measurement skills.</li>
+              <li class="arts-5-info"  style="display:none; line-height: 1;">Have an understanding of a precise approach to drawing and building.</li>
+              <li class="arts-5-info"  style="display:none; line-height: 1;">Have an understanding of the lunar new year and the symbolism behind the celebrations in various cultures.</li>
+              <li class="arts-5-info"  style="display:none; line-height: 1;">Create ceramic tiles and build them into a wood table.</li>
+              <li class="arts-5-info"  style="display:none; line-height: 1;">Use more sophisticated tools.</li>
+            </ul>
+          <p class="arts-5-info" style="display:none;"><strong>In Music, students will be able to:</strong></p>
+            <ul>
+              <li class="arts-5-info"  style="display:none; line-height: 1;">Compose and perform short pieces using a variety of classroom instruments, using question and answer, ab, aba and call and response form.</li>
+              <li class="arts-5-info"  style="display:none; line-height: 1;">Sing in 3-4 part canons and rounds, and 2 part harmonies.</li>
+              <li class="arts-5-info"  style="display:none; line-height: 1;">Demonstrate the ability to perform traditional colonial folk dances.</li>
+              <li class="arts-5-info"  style="display:none; line-height: 1;">Read music and play simple songs on the xylophone, recorder, and guitar.</li>
+            </ul>
+          <p class="arts-6-info" style="display:none;"><strong>In Art, students will be able to:</strong></p>
+            <ul>
+              <li class="arts-6-info"  style="display:none; line-height: 1;">Understand realism through a variety of painting, drawing, photo and spatial mediums.</li>
+              <li class="arts-6-info"  style="display:none; line-height: 1;">Understand observation and interpretation.</li>
+              <li class="arts-6-info"  style="display:none; line-height: 1;">Implement basic design skills and vocabulary.</li>
+              <li class="arts-6-info"  style="display:none; line-height: 1;">Digital Photography: Take, edit and develop photos.</li>
+            </ul>
+          <p class="arts-6-info" style="display:none;"><strong>In Music, students will be able to:</strong></p>
+            <ul>
+              <li class="arts-6-info"  style="display:none; line-height: 1;">Sing in 2 part harmony and parallel octaves.</li>
+              <li class="arts-6-info"  style="display:none; line-height: 1;">Compose long-form compositions (such as theme and variations and rondo form).</li>
+              <li class="arts-6-info"  style="display:none; line-height: 1;">Demonstrate knowledge and awareness of classical and modern day composers, African slave and jazz music and various careers in the music industry.</li>
+              <li class="arts-6-info"  style="display:none; line-height: 1;">Play more complex music on the guitar, xylophone, and recorder.</li>
+              <li class="arts-6-info"  style="display:none; line-height: 1;">Perform Renaissance, traditional African, American swing and lindy-hop dances.</li>
+            </ul>
+          <p class="arts-7-info" style="display:none;"><strong>In Art, students will be able to:</strong></p>
+            <ul>
+              <li class="arts-7-info"  style="display:none; line-height: 1;">Recognize the value of self-expression, discipline, and deep engagement in an area of their choice.</li>
+              <li class="arts-7-info"  style="display:none; line-height: 1;">Understand and appreciate various artistic forms, including musical, performing,studio, technical, and fine arts.</li>
+              <li class="arts-7-info"  style="display:none; line-height: 1;">Explore various artistic and technological media.</li>
+            </ul>
+          <p class="arts-8-info" style="display:none;"><strong>In Art, students will be able to:</strong></p>
+            <ul>
+              <li class="arts-8-info"  style="display:none; line-height: 1;">Recognize the value of self-expression, discipline, and deep engagement in an area of their choice.</li>
+              <li class="arts-8-info"  style="display:none; line-height: 1;">Understand and appreciate various artistic forms, including musical, performing,studio, technical, and fine arts.</li>
+              <li class="arts-8-info"  style="display:none; line-height: 1;">Explore various artistic and technological media.</li>
+            </ul>
+        </div>
+      </div>
+
+      <button class="accordion">Physical Education</button>
+      <div class="panel">
+        <!-- <p class="statement" style="color: #00356f;">"Philsophy Statement"</p> -->
+        <p style="font-style:oblique; opacity: 0.4; margin-top: 0px;">choose a grade level for more info</p>
+        <div class="centered-table">
+          <table class="table-view lower">
+            <tr>
+              <th class="lower-header" colspan="6">Lower</th>
+            </tr>
+            <tr>
+              <td>
+                <span class="grade" id="pe-jk" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">JK</span>
+                <span class="grade" id="pe-k" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">K</span>
+                <span class="grade" id="pe-1" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">1</span>
+                <span class="grade" id="pe-2" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">2</span>
+                <span class="grade" id="pe-3" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">3</span>
+                <span class="grade" id="pe-4" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">4</span>
+              </td>
+            </tr>
+          </table>
+          <table class="table-view  upper" style="border:none">
+            <th class="upper-header" colspan="4">Middle</th>
+            <tr>
+              <td>
+                <span class="grade" id="pe-5" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">5</span>
+                <span class="grade" id="pe-6" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">6</span>
+                <span class="grade" id="pe-7" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">7</span>
+                <span class="grade" id="pe-8" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">8</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="info">
+          <p class="pe-jk-info" style="display:none;"><strong>In P.E. students will be able to:</strong></p>
+            <ul>
+              <li class="pe-jk-info"  style="display:none; line-height: 1;">Show improvement of fine and gross motor skills.</li>
+              <li class="pe-jk-info"  style="display:none; line-height: 1;">Display spatial and body awareness.</li>
+              <li class="pe-jk-info"  style="display:none; line-height: 1;">Cooperate and collaborate during activities.</li>
+              <li class="pe-jk-info"  style="display:none; line-height: 1;">Respect equipment.</li>
+              <li class="pe-jk-info"  style="display:none; line-height: 1;">Float in the water and use kickboard for kicking.</li>
+            </ul>
+          <p class="pe-k-info" style="display:none;"><strong>In P.E. students will be able to:</strong></p>
+            <ul>
+              <li class="pe-k-info"  style="display:none; line-height: 1;">Show improvement of fine and gross motor skills.</li>
+              <li class="pe-k-info"  style="display:none; line-height: 1;">Display spatial and body awareness.</li>
+              <li class="pe-k-info"  style="display:none; line-height: 1;">Demonstrate sense of cooperation.</li>
+              <li class="pe-k-info"  style="display:none; line-height: 1;">Demonstrate respect for equipment and safety of others.</li>
+              <li class="pe-k-info"  style="display:none; line-height: 1;">Float in the water and use kickboard for kicking.</li>
+            </ul>
+          <p class="pe-1-info" style="display:none;"><strong>In P.E. students will be able to:</strong></p>
+            <ul>
+              <li class="pe-1-info"  style="display:none; line-height: 1;">Change in and out of uniform in a reasonable time frame.</li>
+              <li class="pe-1-info"  style="display:none; line-height: 1;">Understand proper locker room etiquette.</li>
+              <li class="pe-1-info"  style="display:none; line-height: 1;">Participate fully in all class activities.</li>
+              <li class="pe-1-info"  style="display:none; line-height: 1;">Demonstrate motor skills specifically eye, hand, and foot coordination.</li>
+              <li class="pe-1-info"  style="display:none; line-height: 1;">Display spatial/body awareness.</li>
+              <li class="pe-1-info"  style="display:none; line-height: 1;">Swim freestyle and kicking on their back the width of the pool.</li>
+              <li class="pe-1-info"  style="display:none; line-height: 1;">Able to jog without walking incremental distances of ¼, ½, ¾ & 1 mile distance.</li>
+              <li class="pe-1-info"  style="display:none; line-height: 1;">Complete the physical fitness test (curls, arm hang, shuttle, sit and reach, mile).</li>
+            </ul>
+          <p class="pe-2-info" style="display:none;"><strong>In P.E. students will be able to:</strong></p>
+            <ul>
+              <li class="pe-2-info"  style="display:none; line-height: 1;">Demonstrate & show improvement of hand, eye, foot coordination in modified games.</li>
+              <li class="pe-2-info"  style="display:none; line-height: 1;">Participate fully in all class activities.</li>
+              <li class="pe-2-info"  style="display:none; line-height: 1;">Demonstrate proper locker room etiquette.</li>
+              <li class="pe-2-info"  style="display:none; line-height: 1;">Display overall spatial/body awareness especially in tumbling and beam.</li>
+              <li class="pe-2-info"  style="display:none; line-height: 1;">Begin to understand the concept of sportsmanship in group activities.</li>
+              <li class="pe-2-info"  style="display:none; line-height: 1;">Understand basic rules for game play.</li>
+              <li class="pe-2-info"  style="display:none; line-height: 1;">Swim freestyle, backstroke, elementary backstroke the length of the pool and demonstrate treading.</li>
+              <li class="pe-2-info"  style="display:none; line-height: 1;">Begin to understand pacing & improvement in weekly fitness curls, arm hang, running.</li>
+              <li class="pe-2-info"  style="display:none; line-height: 1;">Complete the physical fitness test (curls, arm hand, shuttle, sit and reach, mile)</li>
+            </ul>
+          <p class="pe-3-info" style="display:none;"><strong>In P.E. students will be able to:</strong></p>
+            <ul>
+              <li class="pe-3-info"  style="display:none; line-height: 1;">Demonstrate basic sport skills and rules in lead up games.</li>
+              <li class="pe-3-info"  style="display:none; line-height: 1;">Demonstrate proper sportsmanship in all activities.</li>
+              <li class="pe-3-info"  style="display:none; line-height: 1;">Demonstrate proper locker room etiquette.</li>
+              <li class="pe-3-info"  style="display:none; line-height: 1;">Understand the concept of team play.</li>
+              <li class="pe-3-info"  style="display:none; line-height: 1;">Swim three basic strokes and streamline butterfly the length of the pool and complete the tread test.</li>
+              <li class="pe-3-info"  style="display:none; line-height: 1;">Demonstrate steady improvement in weekly fitness running.</li>
+              <li class="pe-3-info"  style="display:none; line-height: 1;">Complete the physical fitness test (curls, arm hang, shuttle, sit and reach, mile).</li>
+            </ul>
+          <p class="pe-4-info" style="display:none;"><strong>In P.E. students will be able to:</strong></p>
+            <ul>
+              <li class="pe-4-info"  style="display:none; line-height: 1;">Demonstrate basic sport skills and rules in team sports.</li>
+              <li class="pe-4-info"  style="display:none; line-height: 1;">Promote good sportsmanship in all activities.</li>
+              <li class="pe-4-info"  style="display:none; line-height: 1;">Demonstrate proper locker room etiquette.</li>
+              <li class="pe-4-info"  style="display:none; line-height: 1;">Demonstrate team play.</li>
+              <li class="pe-4-info"  style="display:none; line-height: 1;">Swim all four strokes the length of the pool and complete the tread test.</li>
+              <li class="pe-4-info"  style="display:none; line-height: 1;">Demonstrate steady improvement in curls, arm hang, and mile run per week/month.</li>
+              <li class="pe-4-info"  style="display:none; line-height: 1;">Complete the physical fitness test (curls, arm hang, shuttle, sit and reach, mile).</li>
+            </ul>
+          <p class="pe-5-info" style="display:none;"><strong>In P.E. students will be able to:</strong></p>
+            <ul>
+              <li class="pe-5-info"  style="display:none; line-height: 1;">Learn team strategy in game play.</li>
+              <li class="pe-5-info"  style="display:none; line-height: 1;">Promote good sportsmanship in all activities.</li>
+              <li class="pe-5-info"  style="display:none; line-height: 1;">Understand rules for different team sports.</li>
+              <li class="pe-5-info"  style="display:none; line-height: 1;">Swim the individual medley and complete endurance swim.</li>
+              <li class="pe-5-info"  style="display:none; line-height: 1;">Complete the physical fitness test (curls, arm hang, shuttle, sit & reach, mile).</li>
+            </ul>
+          <p class="pe-6-info" style="display:none;"><strong>In P.E. students will be able to:</strong></p>
+            <ul>
+              <li class="pe-6-info"  style="display:none; line-height: 1;">Apply team strategy in a variety of sports.</li>
+              <li class="pe-6-info"  style="display:none; line-height: 1;">Promote good sportsmanship in all activities.</li>
+              <li class="pe-6-info"  style="display:none; line-height: 1;">Improve skills and use additional strategies for team sports.</li>
+              <li class="pe-6-info"  style="display:none; line-height: 1;">Swim 1/8th of a mile.</li>
+              <li class="pe-6-info"  style="display:none; line-height: 1;">Complete the physical fitness test (curls, arm hang, shuttle, sit & reach, mile).</li>
+            </ul>
+          <p class="pe-7-info" style="display:none;"><strong>In P.E. students will be able to:</strong></p>
+            <ul>
+              <li class="pe-7-info"  style="display:none; line-height: 1;">Take on a leadership role in both class and after-school sports.</li>
+              <li class="pe-7-info"  style="display:none; line-height: 1;">Demonstrate responsibility both physically and socially.</li>
+              <li class="pe-7-info"  style="display:none; line-height: 1;">Swim 1/4th of a mile.</li>
+              <li class="pe-7-info"  style="display:none; line-height: 1;">Complete the physical fitness test (curls, arm hang, shuttle, sit & reach, mile).</li>
+            </ul>
+          <p class="pe-8-info" style="display:none;"><strong>In P.E. students will be able to:</strong></p>
+            <ul>
+              <li class="pe-8-info"  style="display:none; line-height: 1;">Take on a leadership role in both class and after-school sports.</li>
+              <li class="pe-8-info"  style="display:none; line-height: 1;">Demonstrate responsibility both physically and socially.</li>
+              <li class="pe-8-info"  style="display:none; line-height: 1;">Swim 1/4th of a mile.</li>
+              <li class="pe-8-info"  style="display:none; line-height: 1;">Complete the physical fitness test (curls, arm hang, shuttle, sit & reach, mile).</li>
+            </ul>
+        </div>
+      </div>
+
+      <button class="accordion">World Language</button>
+      <div class="panel">
+        <!-- <p class="statement" style="color: #00356f;">"Philsophy Statement"</p> -->
+        <p style="font-style:oblique; opacity: 0.4; margin-top: 0px;">choose a grade level for more info</p>
+        <div class="centered-table">
+          <table class="table-view-lang">
+            <tr>
+              <th class="lower-header lower"colspan="4">Lower</th>
+            </tr>
+            <tr>
+              <td>
+                <!-- <span class="grade" id="lang-jk" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">JK</span>
+                <span class="grade" id="lang-k" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">K</span> -->
+                <span class="grade" id="lang-1" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">1</span>
+                <span class="grade" id="lang-2" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">2</span>
+                <span class="grade" id="lang-3" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">3</span>
+                <span class="grade" id="lang-4" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">4</span>
+              </td>
+            </tr>
+          </table>
+          <table class="table-view-lang upper" style="border:none">
+            <th class="upper-header" colspan="4">Middle</th>
+            <tr>
+              <td>
+                <span class="grade" id="lang-5" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">5</span>
+                <span class="grade" id="lang-6" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">6</span>
+                <span class="grade" id="lang-7" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">7</span>
+                <span class="grade" id="lang-8" onclick="displayInfo(this)" onmouseover="plus(this)" onmouseout="text(this)">8</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="info">
+          <p class="lang-1-info" style="display:none;"><strong>In Spanish, students will be able to:</strong></p>
+            <ul>
+              <li class="lang-1-info"  style="display:none; line-height: 1;">Recognize and respond to greetings, classroom commands, and introduction sentences.</li>
+              <li class="lang-1-info"  style="display:none; line-height: 1;">Answer basic questions (5 questions).</li>
+              <li class="lang-1-info"  style="display:none; line-height: 1;">Students will recite the Spanish alphabet.</li>
+              <li class="lang-1-info"  style="display:none; line-height: 1;">Recognize and recite colors and numbers 1-31, farm animals, fruits.</li>
+              <li class="lang-1-info"  style="display:none; line-height: 1;">Know and recognize body parts and describe clothing.</li>
+              <li class="lang-1-info"  style="display:none; line-height: 1;">Use verb "I like", "I don’t like".</li>
+              <li class="lang-1-info"  style="display:none; line-height: 1;">Recognize and recite Farm Animals.</li>
+              <li class="lang-1-info"  style="display:none; line-height: 1;">Basic opposite words.</li>
+              <li class="lang-1-info"  style="display:none; line-height: 1;">Recognize and recite Fruit words. </li>
+              <li class="lang-1-info"  style="display:none; line-height: 1;">Have familiarity with cultural elements, including Day of the Dead, piñata, dances.</li>
+            </ul>
+          <p class="lang-2-info" style="display:none;"><strong>In Spanish, students will be able to:</strong></p>
+            <ul>
+              <li class="lang-2-info"  style="display:none; line-height: 1;">Recognize and respond to greetings, classroom commands, and introduction sentences.</li>
+              <li class="lang-2-info"  style="display:none; line-height: 1;">Answer basic questions (10 questions).</li>
+              <li class="lang-2-info"  style="display:none; line-height: 1;">Recognize and recite the days of the week and months of the year.</li>
+              <li class="lang-2-info"  style="display:none; line-height: 1;">Know Classroom words (What is this?).</li>
+              <li class="lang-2-info"  style="display:none; line-height: 1;">Identify Body Parts.</li>
+              <li class="lang-2-info"  style="display:none; line-height: 1;">Identify family members (Who is this?).</li>
+              <li class="lang-2-info"  style="display:none; line-height: 1;">Know about Nouns and articles (Gender and number).</li>
+              <li class="lang-2-info"  style="display:none; line-height: 1;">Describe people and things (Use of adjectives).</li>
+              <li class="lang-2-info"  style="display:none; line-height: 1;">Recognize clothing words (Use of “to have”).</li>
+              <li class="lang-2-info"  style="display:none; line-height: 1;">Have familiarity with cultural elements, including Day of the Dead, piñata, dances.</li>
+            </ul>
+          <p class="lang-3-info" style="display:none;"><strong>In Spanish, students will be able to:</strong></p>
+            <ul>
+              <li class="lang-3-info"  style="display:none; line-height: 1;">Recognize and respond to greetings, classroom commands, and introduction sentences.</li>
+              <li class="lang-3-info"  style="display:none; line-height: 1;">Answer basic questions (20 questions).</li>
+              <li class="lang-3-info"  style="display:none; line-height: 1;">Know seasons and weather expressions.</li>
+              <li class="lang-3-info"  style="display:none; line-height: 1;">Use of question words (What? Where? Who? When? Why?).</li>
+              <li class="lang-3-info"  style="display:none; line-height: 1;">Recognize correct usage of definite articles.</li>
+              <li class="lang-3-info"  style="display:none; line-height: 1;">Recognize correct usage of singular and plural words.</li>
+              <li class="lang-3-info"  style="display:none; line-height: 1;">Know how to tell time, explain seasons and weather, and talk about going places (Where are you going?).</li>
+              <li class="lang-3-info"  style="display:none; line-height: 1;">Recognize subject pronouns.</li>
+              <li class="lang-3-info"  style="display:none; line-height: 1;">Have been introduced to “AR” regular verbs (present tense).</li>
+              <li class="lang-3-info"  style="display:none; line-height: 1;">Give presentations using current vocabulary and expressions.</li>
+              <li class="lang-3-info"  style="display:none; line-height: 1;">Have familiarity with cultural elements, including Day of the Dead, piñata, dances, and cooking.</li>
+            </ul>
+          <p class="lang-4-info" style="display:none;"><strong>In Spanish, students will be able to:</strong></p>
+            <ul>
+              <li class="lang-4-info"  style="display:none; line-height: 1;">Review of basic vocabulary of introductions and farewells.</li>
+              <li class="lang-4-info"  style="display:none; line-height: 1;">Complete projects using current vocabulary and expressions.</li>
+              <li class="lang-4-info"  style="display:none; line-height: 1;">Perform skits using vocabulary and expressions.</li>
+              <li class="lang-4-info"  style="display:none; line-height: 1;">Give presentations using current vocabulary and expressions.</li>
+              <li class="lang-4-info"  style="display:none; line-height: 1;">Express gratitude and apologies.</li>
+              <li class="lang-4-info"  style="display:none; line-height: 1;">Use of the expressions "I understand", "I don't understand".</li>
+              <li class="lang-4-info"  style="display:none; line-height: 1;">Express likes/dislikes about animals, colors, fruits, clothing, etc.</li>
+            </ul>
+          <p class="lang-4-info" style="display:none;"><strong>In Mandarin, students will be able to:</strong></p>
+            <ul>
+              <li class="lang-4-info"  style="display:none; line-height: 1;">Say hello to someone, introduce themselves, and say good-bye.</li>
+              <li class="lang-4-info"  style="display:none; line-height: 1;">Express gratitude and apologies.</li>
+              <li class="lang-4-info"  style="display:none; line-height: 1;">Use the basic classroom expressions such as "I understood," "I don’t understand," etc.</li>
+              <li class="lang-4-info"  style="display:none; line-height: 1;">Learn about Chinese numbers, colors, body parts, and basic pronunciation of the language.</li>
+              <li class="lang-4-info"  style="display:none; line-height: 1;">Gain basic awareness of Chinese culture about Chinese festival-moon festival, Chinese new year, Beijing opera makeup, Giant pandas, etc.</li>
+            </ul>
+          <p class="lang-5-info" style="display:none;"><strong>In Spanish, students will:</strong></p>
+            <ul>
+              <li class="lang-5-info"  style="display:none; line-height: 1;">Master the vocabulary and expressions for days, months, seasons, numbers 0 - 60, telling time, colors, classroom subjects.</li>
+              <li class="lang-5-info"  style="display:none; line-height: 1;">Conjugate the verb "to be".</li>
+              <li class="lang-5-info"  style="display:none; line-height: 1;">Know and use definite and indefinite articles.</li>
+              <li class="lang-5-info"  style="display:none; line-height: 1;">Understand subject-adjective agreement.</li>
+              <li class="lang-5-info"  style="display:none; line-height: 1;">Perform skits in the target language.</li>
+              <li class="lang-5-info"  style="display:none; line-height: 1;">Understand the cultural lessons: Don Quijote, Day of the Dead.</li>
+            </ul>
+          <p class="lang-5-info" style="display:none;"><strong>In Mandarin, students will:</strong></p>
+            <ul>
+              <li class="lang-5-info"  style="display:none; line-height: 1;">Understand the most common teacher commands.</li>
+              <li class="lang-5-info"  style="display:none; line-height: 1;">Produce memorized words, phrases, and short sentences.</li>
+              <li class="lang-5-info"  style="display:none; line-height: 1;">Introduce themselves and tell about their age, nationality, family, likes and dislikes, converse about pets and sports.</li>
+              <li class="lang-5-info"  style="display:none; line-height: 1;">Gain an awareness and appreciation of Chinese culture including festivals and traditions.</li>
+            </ul>
+          <p class="lang-6-info" style="display:none;"><strong>In Spanish, students will:</strong></p>
+            <ul>
+              <li class="lang-6-info"  style="display:none; line-height: 1;">Master the vocabulary and expressions for days, months, seasons, numbers 0-60, telling time, colors, classroom subjects.</li>
+              <li class="lang-6-info"  style="display:none; line-height: 1;">Conjugate the verb "to be".</li>
+              <li class="lang-6-info"  style="display:none; line-height: 1;">Know and use definite and indefinite articles.</li>
+              <li class="lang-6-info"  style="display:none; line-height: 1;">Understand subject-adjective agreement.</li>
+              <li class="lang-6-info"  style="display:none; line-height: 1;">Perform skits in the target language.</li>
+              <li class="lang-6-info"  style="display:none; line-height: 1;">Understand the cultural lessons: Don Quijote, Day of the Dead.</li>
+            </ul>
+          <p class="lang-6-info" style="display:none;"><strong>In Mandarin, students will:</strong></p>
+            <ul>
+              <li class="lang-6-info"  style="display:none; line-height: 1;">Understand most teacher commands.</li>
+              <li class="lang-6-info"  style="display:none; line-height: 1;">Produce memorized phrases, sentences and short dialogues.</li>
+              <li class="lang-6-info"  style="display:none; line-height: 1;">Conduct the basic conversations related to their daily life such as talking about their daily routine, shopping, eating at a restaurant, etc.</li>
+              <li class="lang-6-info"  style="display:none; line-height: 1;">Gain deeper understanding of Chinese cultures.</li>
+            </ul>
+          <p class="lang-7-info" style="display:none;"><strong>In Spanish, students will:</strong></p>
+            <ul>
+              <li class="lang-7-info"  style="display:none; line-height: 1;">Know and use vocabulary and expressions related to school supplies, the school day, shopping, clothing, and food and beverages.</li>
+              <li class="lang-7-info"  style="display:none; line-height: 1;">Conjugate –ar, -er, and -ir verbs in the present tense.</li>
+              <li class="lang-7-info"  style="display:none; line-height: 1;">Know and use the informal and formal "you."</li>
+              <li class="lang-7-info"  style="display:none; line-height: 1;">Know and use contractions "to the" and "of the."</li>
+              <li class="lang-7-info"  style="display:none; line-height: 1;">Perform skits in the target language.</li>
+              <li class="lang-7-info"  style="display:none; line-height: 1;">Understand the cultural lessons: Day of the Dead, traditional clothing.</li>
+            </ul>
+          <p class="lang-7-info" style="display:none;"><strong>In Mandarin, students will:</strong></p>
+            <ul>
+              <li class="lang-7-info"  style="display:none; line-height: 1;">Understand most teacher commands.</li>
+              <li class="lang-7-info"  style="display:none; line-height: 1;">Ask and answer questions spontaneously.</li>
+              <li class="lang-7-info"  style="display:none; line-height: 1;">Conduct conversations related to family, classes at school and weekend plans.</li>
+              <li class="lang-7-info"  style="display:none; line-height: 1;">Be able to write an email or letter.</li>
+              <li class="lang-7-info"  style="display:none; line-height: 1;">Gain a deeper awareness of Chinese culture.</li>
+              <li class="lang-7-info"  style="display:none; line-height: 1;">Use various polite expressions for different situations.</li>
+            </ul>
+          <p class="lang-8-info" style="display:none;"><strong>In Spanish, students will:</strong></p>
+            <ul>
+              <li class="lang-8-info"  style="display:none; line-height: 1;">Know and use vocabulary and expressions related to the home, family, body parts, sports, illness and emotions, and summer/winter weather and activities.</li>
+              <li class="lang-8-info"  style="display:none; line-height: 1;">Conjugate -ar verbs in the preterite tense.</li>
+              <li class="lang-8-info"  style="display:none; line-height: 1;">Know and use possessive adjectives.</li>
+              <li class="lang-8-info"  style="display:none; line-height: 1;">Know and use direct object pronouns.</li>
+              <li class="lang-8-info"  style="display:none; line-height: 1;">Express likes and dislikes.</li>
+              <li class="lang-8-info"  style="display:none; line-height: 1;">Give presentations and perform skits in the target language.</li>
+              <li class="lang-8-info"  style="display:none; line-height: 1;">Understand the cultural lessons: Day of the Dead.</li>
+            </ul>
+          <p class="lang-8-info" style="display:none;"><strong>In Mandarin, students will:</strong></p>
+            <ul>
+              <li class="lang-8-info"  style="display:none; line-height: 1;">Understand all teacher commands.</li>
+              <li class="lang-8-info"  style="display:none; line-height: 1;">Carry on a spontaneous conversation on a wider range of topics.</li>
+              <li class="lang-8-info"  style="display:none; line-height: 1;">Describe friends and school campus.</li>
+              <li class="lang-8-info"  style="display:none; line-height: 1;">Express opinions about movies, tv programs and music.</li>
+              <li class="lang-8-info"  style="display:none; line-height: 1;">Gain a more thorough understanding of Chinese culture and geography.</li>
+            </ul>
+        </div>
+      </div>
+      <br><br>
+
+
+      <script>
+      var acc = document.getElementsByClassName("accordion");
+      var i;
+
+      for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var panel = this.nextElementSibling;
+          if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+          } else {
+            panel.style.maxHeight = "5000px";
+          }
+        });
+      }
+
+      function plus(x) {
+        x.innerHTML= '+'
+      }
+
+      function text(x) {
+        let text = x.id.split('-');
+        x.innerHTML = text[1].toUpperCase()
+      }
+
+      var last;
+      var lastButton;
+
+      function displayInfo(x) {
+        if (last) {
+          console.log(last);
+          for (var i = 0; i < last.length; i++) {
+            last[i].style.display = 'none'
+          }
+        //   last.classList.add('hidden');
+        //   last.classList.remove('visible');
+        //
+          lastButton.style.backgroundColor = "white";
+          x.style.backgroundColor = "rgb(199, 208, 218)";
+        //
+        //
+          let id = x.id + '-info';
+          let info = document.getElementsByClassName(id);
+          for (var i = 0; i < info.length; i++) {
+            info[i].style.removeProperty('display');
+            info[i].style.listStyleType = 'bullet';
+          }
+        //   info.classList.add('visible');
+        //   info.classList.remove('hidden');
+        //
+          last = info;
+          lastButton = x;
+        //
+        } else {
+          let id = x.id + '-info';
+          console.log(id);
+          let info = document.getElementsByClassName(id);
+          for (var i = 0; i < info.length; i++) {
+            info[i].style.removeProperty('display');
+          }
+          // info.style.display('block');
+          // info.classList.remove('hidden');
+          x.style.backgroundColor = "rgb(199, 208, 218)";
+          last = info;
+          lastButton = x
+        }
+      }
+      </script>
+
+  </body>
+</html>

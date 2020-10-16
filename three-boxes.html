@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <style media="screen">
+    .three-boxes {
+      width: 100%;
+      text-align: center;
+      /* display: table-cell; */
+
+    }
+    #info-boxes {
+      width: 28%;
+      margin-left: 15px;
+      min-height: 399px;
+      height: 475px;
+      opacity: 0.6;
+      background: grey;
+      display: inline-block;
+      vertical-align: top;
+      padding: 10px;
+    }
+
+    #info-boxes h3 {
+      font-family: 'Crimson Text', serif;
+      font-size: 28px;
+      line-height: 38px;
+      margin-bottom: 15px;
+      margin-top: 20px;
+    }
+
+    #info-boxes p {
+      font-family: 'Crimson Text', serif;
+      font-size: 18px;
+      line-height: 25px;
+      padding: 20px;
+    }
+
+    #info-boxes #left-text {
+      font-family: 'Crimson Text', serif;
+      font-size: 18px;
+      line-height: 25px;
+      padding: 20px;
+      margin-bottom: 60px;
+    }
+
+    #info-boxes #center-text {
+      font-family: 'Crimson Text', serif;
+      font-size: 18px;
+      line-height: 25px;
+      padding: 20px;
+      margin-bottom: 37px;
+    }
+
+    #info-boxes a {
+      text-decoration: none;
+      color: black;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 22px;
+    }
+
+    #info-boxes a:visited {
+      color: black;
+    }
+
+    /* #info-boxes a:hover {
+      backgound: #c8df8e;
+    } */
+
+    .green-btn button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 1.42857143;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+          touch-action: manipulation;
+      cursor: pointer;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+      background-image: none;
+      background-color: #c8df8e;
+      border: 1px solid transparent;
+      /* border-radius: 4px; */
+    }
+
+    .green-btn button:hover {
+      background: #a0c24c;
+      color: #565959;
+      text-decoration: none;
+      -webkit-transition: .3s;
+      transition: .3s;
+    }
+
+    .orange-btn button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 1.42857143;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+          touch-action: manipulation;
+      cursor: pointer;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+      background-image: none;
+      background-color: #edcf8a;
+      border: 1px solid transparent;
+      /* border-radius: 4px; */
+    }
+
+    .orange-btn button:hover {
+      background: #e6bd5e;
+      color: #565959;
+      text-decoration: none;
+      -webkit-transition: .3s;
+      transition: .3s;
+    }
+
+    .blue-btn button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 1.42857143;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+          touch-action: manipulation;
+      cursor: pointer;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+      background-image: none;
+      background-color: #6f96ba;
+      border: 1px solid transparent;
+      /* border-radius: 4px; */
+    }
+
+    .blue-btn button:hover {
+      background: #0067ab;
+      color: #565959;
+      text-decoration: none;
+      -webkit-transition: .3s;
+      transition: .3s;
+    }
+
+    @media only screen and (max-width: 1200px) {
+      #info-boxes {
+        height: 560px;
+      }
+      .orange-btn button{
+        font-size: 56px;
+      }
+      .green-btn button{
+        font-size: 36px;
+      }
+    }
+
+    @media only screen and (max-width: 1030px) {
+      .three-boxes{
+        margin-left: -10px;
+      }
+      #info-boxes {
+        width: auto;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      #info-boxes #left-text {
+        margin-bottom: 20px;
+      }
+    }
+
+    @media only screen and (max-width: 325px) {
+      .three-boxes{
+        margin-left: -24px;
+      }
+      #info-boxes {
+        width: 100%;
+        height: auto;
+      }
+
+      #info-boxes #left-text {
+        margin-bottom: 20px;
+      }
+    }
+
+
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
+  <body>
+    <div class="three-boxes">
+      <div style="background-color: #c8df8e" id="info-boxes">
+        <h3>Our <br>Program</h3>
+        <p id="left-text">Hillbrook provides an extraordinary educational experience. Our curriculum is challenging, flexible, and anchored in standards – it’s designed to keep bodies active and minds engaged as our students sharpen their skills and broaden their understanding of the world, their communities, and themselves.</p>
+        <div class="green-btn">
+          <button type="button" name="button"><a href="https://www.hillbrook.org/a-hillbrook-education/our-educational-philosophy">OUR EDUCATIONAL PHILOSOPHY</a></button>
+        </div>
+      </div>
+      <div style="background-color: #edcf8a" id="info-boxes">
+        <h3>Apply <br>to Hillbrook</h3>
+        <p id="center-text">Hillbrook provides an extraordinary educational experience for students in grades JK-8. Choosing the right independent school for your child and family is an exciting time for you, and we cannot wait to partner with you as you explore life at Hillbrook and an environment that brings out the very best in your child.</p>
+        <div class="orange-btn">
+          <button type="button" name="button"><a href="https://www.hillbrook.org/admission/tours--open-houses">CLICK HERE TO APPLY!</a></button>
+        </div>
+      </div>
+      <div style="background-color: #6f96ba" id="info-boxes">
+        <h3>Diversity, Equity, and Inclusion at Hillbrook</h3>
+        <p>The twenty-first century is defined by a growing global society that challenges intolerance and values differences as a way to enrich and deepen our world. At Hillbrook, cultural competency is the willingness to see oneself situated in a complex and diverse world, to seek understanding and appreciation of difference, to develop empathy, and to challenge biases and discrimination.</p>
+        <div class="blue-btn">
+          <button type="button" name="button"><a href="https://www.hillbrook.org/who-we-are/diversity-equity-and-inclusion-at-hillbrook">DEI AT HILLBROOK</a></button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
